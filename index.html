@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-        --primary-color: #ff6b35;
-        --primary-dark: #e55a2b;
+        --primary-color: #4361ee;
+        --primary-dark: #3a56d4;
         --color-correct: #28a745;
         --color-incorrect: #dc3545;
         --color-unattempted: #ffc107;
@@ -75,22 +75,7 @@
         width: 100%;
     }
 
-    /* Registration Screen */
-    .registration-card { max-width: 500px; }
-    .registration-content { padding: 2rem; text-align: center; }
-    .registration-content h1 { font-size: 2rem; font-weight: 700; color: #1a202c; margin-bottom: 1rem; }
-    .form-group { margin-bottom: 1rem; text-align: left; }
-    .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--primary-color); }
-    .form-group input { width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 1rem; }
-    .form-group input:focus { border-color: var(--primary-color); outline: none; }
-    .btn { padding: 0.75rem 1.5rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease-in-out; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
-    .btn-primary { background-color: var(--primary-color); color: white; }
-    .btn-primary:hover { background-color: var(--primary-dark); }
-    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .error-message { color: var(--color-incorrect); margin-top: 0.5rem; font-size: 0.875rem; }
-    .hidden { display: none; }
-
-    /* Instructions Screen */
+    /* --- Instructions Screen --- */
     .instructions-card { max-width: 800px; }
     .instructions-content { padding: 2rem; }
     .instructions-content h1 {
@@ -134,10 +119,27 @@
             justify-content: space-between;
        }
     }
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    .btn-primary { background-color: var(--primary-color); color: white; }
+    .btn-primary:hover { background-color: var(--primary-dark); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .btn-secondary { background-color: #e2e8f0; color: #4a5568; }
     .btn-secondary:hover { background-color: #cbd5e0; }
+    .btn-tertiary { background-color: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); }
+    .btn-tertiary:hover { background-color: #f7fafc; }
 
-    /* Quiz Screen */
+    /* --- Quiz Screen --- */
     .quiz-container {
         display: flex;
         flex-direction: column;
@@ -168,7 +170,28 @@
     }
     .quiz-top-bar h1 { font-size: 1.125rem; font-weight: 600; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .top-bar-controls { display: flex; align-items: center; gap: 1rem; }
-    .timer-display { background-color: rgba(255,255,255,0.2); padding: 0.25rem 0.75rem; border-radius: 999px; display: flex; align-items: center; gap: 0.5rem; }
+    .timer-display { 
+        background-color: rgba(255,255,255,0.2); 
+        padding: 0.5rem 1rem; 
+        border-radius: 999px; 
+        display: flex; 
+        align-items: center; 
+        gap: 0.5rem; 
+        min-width: 100px;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .timer-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        background-color: rgba(255,255,255,0.5);
+        width: 100%;
+        transform-origin: left;
+        transition: transform 1s linear;
+    }
     .control-btn { background: none; border: none; color: white; cursor: pointer; padding: 0.25rem; }
     .control-btn svg { width: 1.25rem; height: 1.25rem; }
 
@@ -190,8 +213,22 @@
         padding: 0.75rem;
         border-radius: 0.5rem;
         margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-    .question-text { font-size: 1.125rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .question-text { 
+        font-size: 1.125rem; 
+        font-weight: 600; 
+        margin-bottom: 1.5rem; 
+        line-height: 1.5;
+    }
+    .question-image {
+        max-width: 100%;
+        margin: 0.5rem 0 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: var(--shadow-md);
+    }
     .options-grid { display: flex; flex-direction: column; gap: 0.75rem; }
     .option-btn {
         text-align: left;
@@ -204,6 +241,7 @@
         width: 100%;
         display: flex;
         align-items: flex-start;
+        position: relative;
     }
     .option-btn:hover { border-color: var(--primary-color); background-color: #f7fafc; }
     .option-btn.selected {
@@ -218,8 +256,20 @@
         font-weight: 600;
         margin-right: 0.5rem;
         color: var(--primary-color);
+        min-width: 24px;
     }
     .option-btn.selected .option-prefix { color: white; }
+    .option-status-icon {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: none;
+    }
+    .option-btn.correct .option-status-icon.correct,
+    .option-btn.incorrect .option-status-icon.incorrect {
+        display: block;
+    }
 
     .question-actions {
         margin-top: auto;
@@ -261,6 +311,7 @@
         cursor: pointer;
         z-index: 5;
         transition: right 0.3s ease-in-out;
+        box-shadow: var(--shadow-md);
     }
     .quiz-sidebar.collapsed + .sidebar-toggle { right: 0; }
     .sidebar-toggle svg { width: 1.25rem; height: 1.25rem; }
@@ -284,11 +335,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 0.25rem;
+        border-radius: 0.5rem;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.2s;
         border: 1px solid transparent;
+        position: relative;
     }
     .palette-item.current {
         border-color: var(--primary-dark);
@@ -298,6 +350,27 @@
     .palette-item.correct { background-color: var(--bg-answered); border: 1px solid var(--border-answered); color: var(--color-answered); }
     .palette-item.incorrect { background-color: var(--bg-incorrect); border: 1px solid var(--border-incorrect); color: var(--color-incorrect); }
     .palette-item.unattempted { background-color: #f7fafc; border: 1px solid #e2e8f0; color: #4a5568; }
+
+    /* Status summary in sidebar */
+    .status-summary {
+        background: white;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: var(--shadow-sm);
+    }
+    .status-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+    }
+    .status-color {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+    }
 
     /* Palette Status Colors */
     .status-notVisited { background-color: var(--bg-not-visited); border-color: var(--border-not-visited); color: #4a5568; }
@@ -317,7 +390,7 @@
         border-radius: 50%;
     }
     
-    /* Results Screen */
+    /* --- Results Screen --- */
     .results-card { max-width: 1000px; background-color: #f7fafc; }
     .results-content { padding: 2.5rem; }
     .results-header { text-align: center; margin-bottom: 2rem; }
@@ -363,11 +436,13 @@
         background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
         color: white;
         text-align: center;
+        padding: 1.5rem;
+        border-radius: 0.75rem;
     }
     .social-card .btn { background-color: rgba(255,255,255,0.2); color: white; border: 1px solid white; }
     .social-card .btn:hover { background-color: rgba(255,255,255,0.3); }
 
-    /* Review Screen */
+    /* --- Review Screen --- */
     .review-card { max-width: 1400px; display: flex; flex-direction: column; height: calc(100vh - 2rem); }
     .review-top-bar {
         display: flex;
@@ -459,20 +534,87 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    .progress-bar {
-        height: 4px;
-        background-color: rgba(255,255,255,0.3);
-        border-radius: 2px;
-        overflow: hidden;
-        margin-top: 0.5rem;
+    /* New features */
+    .quick-nav-buttons {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
     }
-    .progress-fill {
-        height: 100%;
-        background-color: white;
-        transition: width 0.3s ease;
-        width: 0%;
+    .quick-nav-buttons .btn {
+        flex: 1;
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .performance-chart {
+        width: 100%;
+        height: 200px;
+        margin: 1.5rem 0;
+    }
+    
+    .theme-toggle {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .theme-toggle:hover {
+        background-color: rgba(255,255,255,0.1);
     }
 
+    /* Dark theme */
+    [data-theme="dark"] {
+        --primary-color: #5a67d8;
+        --primary-dark: #4c51bf;
+        --bg-correct: #22543d;
+        --bg-incorrect: #742a2a;
+        --bg-unattempted: #744210;
+        --bg-not-visited: #2d3748;
+        --color-correct: #68d391;
+        --color-incorrect: #fc8181;
+        --color-unattempted: #f6e05e;
+    }
+    
+    [data-theme="dark"] body {
+        background-color: #1a202c;
+        color: #e2e8f0;
+    }
+    
+    [data-theme="dark"] .card {
+        background-color: #2d3748;
+        color: #e2e8f0;
+    }
+    
+    [data-theme="dark"] .question-header,
+    [data-theme="dark"] .instructions-summary,
+    [data-theme="dark"] .quiz-sidebar,
+    [data-theme="dark"] .review-sidebar {
+        background-color: #2d3748;
+        border-color: #4a5568;
+    }
+    
+    [data-theme="dark"] .option-btn {
+        background-color: #2d3748;
+        border-color: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    [data-theme="dark"] .option-btn:hover {
+        background-color: #3c4666;
+    }
+    
+    [data-theme="dark"] .summary-card,
+    [data-theme="dark"] .review-sidebar-card {
+        background-color: #2d3748;
+        color: #e2e8f0;
+    }
+
+    /* Utility */
     .font-bold { font-weight: 700; }
     .font-semibold { font-weight: 600; }
     .text-center { text-align: center; }
@@ -507,26 +649,28 @@
       <symbol id="icon-minus-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></symbol>
       <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></symbol>
       <symbol id="icon-lightbulb" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.311V21m0 0H9m3-3.75V6.75m0-3a3 3 0 00-3 3h6a3 3 0 00-3-3z" /></symbol>
+      <symbol id="icon-youtube" viewBox="0 0 24 24"><path d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.73,18.78 17.93,18.84C17.13,18.91 16.44,18.94 15.84,18.94L15,19C12.81,19 11.2,18.84 10.17,18.56C9.27,18.31 8.69,17.73 8.44,16.83C8.31,16.36 8.22,15.73 8.16,14.93C8.09,14.13 8.06,13.44 8.06,12.84L8,12C8,9.81 8.16,8.2 8.44,7.17C8.69,6.27 9.27,5.69 10.17,5.44C10.64,5.31 11.27,5.22 12.07,5.16C12.87,5.09 13.56,5.06 14.16,5.06L15,5C17.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z"></path></symbol>
       <symbol id="icon-telegram" viewBox="0 0 24 24"><path d="M9.78,18.65L10.26,14.21L18.73,7.45M9.78,18.65L12.73,17.54L14.21,15.07L12.06,17.03M9.78,18.65L6.29,17.3L3.09,16.1L3.18,16.27C3.43,16.77 3.63,17.26 3.76,17.74C3.92,18.31 3.96,18.83 3.96,19.31C3.96,19.31 4,19.31 4,19.32L4,19.33C4,19.73 4.07,20.13 4.22,20.5C4.39,20.88 4.62,21.23 4.93,21.53C5.23,21.83 5.59,22.07 5.97,22.24C6.34,22.41 6.73,22.5 7.12,22.5C7.5,22.5 7.85,22.42 8.17,22.27C8.48,22.11 8.77,21.89 9.03,21.63C9.29,21.37 9.5,21.07 9.66,20.75C9.83,20.42 9.91,20.05 9.91,19.65L9.78,18.65M18.73,7.45L7.05,12.92L3,11.62L20.94,4.69L18.73,7.45Z"></path></symbol>
+      <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></symbol>
+      <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></symbol>
     </defs>
   </svg>
 
   <div class="app-container">
     
-    <div id="registrationScreen" class="card registration-card"></div>
-    <div id="instructionsScreen" class="card instructions-card hidden"></div>
+    <div id="instructionsScreen" class="card instructions-card"></div>
     <div id="quizScreen" class="card quiz-container hidden"></div>
     <div id="resultsScreen" class="card results-card hidden"></div>
     <div id="reviewScreen" class="card review-card hidden"></div>
 
   </div>
 
-  <script id="quiz-data" type="application/json">{"quizTitle":"करेंट अफेयर्स और सामान्य ज्ञान प्रश्नोत्तरी","questions":[{"id":0,"text":"पेरिस ओलंपिक 2024 में भारत ने कुल कितने पदक जीते हैं?","options":["4","6","8","10"],"correctIndex":1,"explanation":"पेरिस ओलंपिक 2024 में भारत ने 6 पदक जीते: 1 स्वर्ण, 2 रजत और 3 कांस्य।","reference":""},{"id":1,"text":"भारत के वर्तमान राष्ट्रपति कौन हैं?","options":["राम नाथ कोविंद","द्रौपदी मुर्मू","प्रणब मुखर्जी","अपर्णा कुमार"],"correctIndex":1,"explanation":"द्रौपदी मुर्मू 15 जुलाई 2022 से भारत की 15वीं राष्ट्रपति हैं।","reference":""},{"id":2,"text":"चंद्रयान-3 मिशन का लैंडर का नाम क्या है?","options":["प्रज्ञान","विक्रम","शिव शक्ति","अग्नि"],"correctIndex":1,"explanation":"चंद्रयान-3 के लैंडर का नाम विक्रम है, जो 23 अगस्त 2023 को चंद्रमा पर उतरा।","reference":""},{"id":3,"text":"भारतीय रिजर्व बैंक (RBI) का मुख्यालय कहाँ स्थित है?","options":["कोलकाता","मुंबई","नई दिल्ली","चेन्नई"],"correctIndex":1,"explanation":"RBI का मुख्यालय मुंबई में है।","reference":""},{"id":4,"text":"2024 में G20 शिखर सम्मेलन की मेजबानी किस देश ने की?","options":["भारत","ब्राजील","अमेरिका","जापान"],"correctIndex":1,"explanation":"2024 G20 शिखर सम्मेलन की मेजबानी ब्राजील ने की।","reference":""},{"id":5,"text":"भारतीय संविधान की प्रस्तावना में 'समाजवादी' शब्द कब जोड़ा गया?","options":["1976","1950","1962","1947"],"correctIndex":0,"explanation":"42वें संशोधन (1976) द्वारा 'समाजवादी', 'धर्मनिरपेक्ष' और 'अखंडता' शब्द जोड़े गए।","reference":""},{"id":6,"text":"विश्व का सबसे बड़ा महासागर कौन-सा है?","options":["अटलांटिक","हिंद","प्रशांत","आर्कटिक"],"correctIndex":2,"explanation":"प्रशांत महासागर पृथ्वी का सबसे बड़ा महासागर है।","reference":""},{"id":7,"text":"भारत का राष्ट्रीय फल क्या है?","options":["सेब","केला","आम","अंगूर"],"correctIndex":2,"explanation":"आम को भारत का राष्ट्रीय फल घोषित किया गया है।","reference":""},{"id":8,"text":"2024 लोकसभा चुनाव में NDA ने कितनी सीटें जीतीं?","options":["240","272","303","350"],"correctIndex":1,"explanation":"2024 लोकसभा चुनाव में NDA ने 293 सीटें जीतीं, जिसमें BJP की 240 सीटें शामिल हैं।","reference":""},{"id":9,"text":"संयुक्त राष्ट्र का मुख्यालय कहाँ है?","options":["जिनेवा","न्यूयॉर्क","पेरिस","लंदन"],"correctIndex":1,"explanation":"संयुक्त राष्ट्र का मुख्यालय न्यूयॉर्क, अमेरिका में है।","reference":""},{"id":10,"text":"भारत का सबसे लंबा पुल कौन-सा है?","options":["बांद्रा-वर्ली सी लिंक","धोला-सदन पुल","बोगीबील पुल","अट्टारी-वाघा पुल"],"correctIndex":1,"explanation":"धोला-सादिया पुल भारत का सबसे लंबा पुल है, जो 12.274 किमी लंबा है।","reference":""},{"id":11,"text":"COVID-19 वैक्सीन कोविशील्ड किस कंपनी ने विकसित किया?","options":["भारत बायोटेक","सीरम इंस्टीट्यूट","जॉनसन एंड जॉनसन","मॉडर्ना"],"correctIndex":1,"explanation":"कोविशील्ड ऑक्सफोर्ड-एस्ट्राजेनेका वैक्सीन है, जिसे भारत में सीरम इंस्टीट्यूट ने उत्पादित किया।","reference":""},{"id":12,"text":"भारतीय अर्थव्यवस्था का सबसे बड़ा क्षेत्र कौन-सा है?","options":["कृषि","उद्योग","सेवा","खनन"],"correctIndex":2,"explanation":"सेवा क्षेत्र भारतीय GDP का लगभग 55% योगदान देता है।","reference":""},{"id":13,"text":"वर्तमान में भारत के प्रधानमंत्री कौन हैं?","options":["मनमोहन सिंह","नरेंद्र मोदी","अटल बिहारी वाजपेयी","इंदिरा गांधी"],"correctIndex":1,"explanation":"नरेंद्र मोदी 2014 से भारत के प्रधानमंत्री हैं।","reference":""},{"id":14,"text":"भारत का राष्ट्रीय खेल क्या है?","options":["क्रिकेट","हॉकी","कबड्डी","फुटबॉल"],"correctIndex":1,"explanation":"हॉकी को भारत का राष्ट्रीय खेल माना जाता है।","reference":""},{"id":15,"text":"प्लासी का युद्ध कब लड़ा गया?","options":["1757","1857","1526","1764"],"correctIndex":0,"explanation":"प्लासी का युद्ध 23 जून 1757 को लड़ा गया, जिसने ब्रिटिश शासन की नींव रखी।","reference":""},{"id":16,"text":"भारतीय संविधान की कौन-सी अनुसूची राज्यों के विलय से संबंधित है?","options":["पहली","दूसरी","तीसरी","चौथी"],"correctIndex":0,"explanation":"पहली अनुसूची राज्यों और संघ राज्य क्षेत्रों की सूची देती है।","reference":""},{"id":17,"text":"गंगा नदी का उद्गम स्थल क्या है?","options":["गंगोत्री","यमुनोत्री","अमरनाथ","बद्रीनाथ"],"correctIndex":0,"explanation":"गंगा नदी गंगोत्री ग्लेशियर से निकलती है।","reference":""},{"id":18,"text":"अशोक का सिंह स्तंभ कहाँ स्थित है?","options":["साँची","सारनाथ","अमरावती","कोणार्क"],"correctIndex":1,"explanation":"अशोक स्तंभ सारनाथ में स्थित है और राष्ट्रीय चिन्ह है।","reference":""},{"id":19,"text":"भारतीय संविधान का निर्माण कितने समय में हुआ?","options":["2 वर्ष 11 माह 18 दिन","3 वर्ष","1 वर्ष","5 वर्ष"],"correctIndex":0,"explanation":"संविधान सभा ने 2 वर्ष, 11 माह और 18 दिनों में संविधान तैयार किया।","reference":""},{"id":20,"text":"2024 में नोबेल शांति पुरस्कार किसे मिला?","options":["निहोन हिदान्क्यो","यूक्रेन सरकार","WHO","UNICEF"],"correctIndex":0,"explanation":"2024 नोबेल शांति पुरस्कार जापानी संगठन निहोन हिदान्क्यो को परमाणु निरस्त्रीकरण के लिए मिला।","reference":""},{"id":21,"text":"भारत का सबसे बड़ा राज्य (क्षेत्रफल के अनुसार) कौन-सा है?","options":["मध्य प्रदेश","राजस्थान","उत्तर प्रदेश","महाराष्ट्र"],"correctIndex":1,"explanation":"राजस्थान भारत का सबसे बड़ा राज्य है, क्षेत्रफल 342,239 वर्ग किमी।","reference":""},{"id":22,"text":"ISRO का पूरा नाम क्या है?","options":["Indian Space Research Organisation","Indian Science Research Office","International Space Research Org","Indian Satellite Research Org"],"correctIndex":0,"explanation":"ISRO का पूरा नाम Indian Space Research Organisation है।","reference":""},{"id":23,"text":"भारत की स्वतंत्रता कब मिली?","options":["15 अगस्त 1947","26 जनवरी 1950","2 अक्टूबर 1947","14 अगस्त 1947"],"correctIndex":0,"explanation":"भारत को 15 अगस्त 1947 को पूर्ण स्वतंत्रता मिली।","reference":""},{"id":24,"text":"वर्तमान में संयुक्त राष्ट्र महासचिव कौन हैं?","options":["एंटोनियो गुटेरेस","बान की मून","कोफी अन्नान","जावेद अहमद"],"correctIndex":0,"explanation":"एंटोनियो गुटेरेस 2017 से UN महासचिव हैं।","reference":""}],"totalTime":900,"negativeMarking":0.3333333333333333,"appName":"MissionSelection","telegramLink":"https://t.me/+8cLrxmcwutM1YzY1","scriptUrl":"https://script.google.com/macros/s/AKfycbyiOnDxThz6SNyehKWzT2LRzOiimsjUc9mE7C9w9BQuMpXJP3--3y0rtAUEQ7pUnBUj/exec","instructionStrings":{"screenTitle":"परीक्षा निर्देश","quizNamePrefix":"परीक्षा का नाम:","totalTime":"समय: 15 मिनट","totalMarks":"पूर्णांक: 25","instructionsHeader":"कृपया निम्नलिखित निर्देशों को ध्यानपूर्वक पढ़ें:","instruction1":"परीक्षा में 25 प्रश्न हैं।","instruction2":"प्रत्येक प्रश्न में दिए गए 4 विकल्पों में से केवल 1 विकल्प सही उत्तर के रूप में उपलब्ध होगा।","instruction3":"आपको परीक्षा समाप्त करने के लिए 15 मिनट का समय मिलेगा।","instruction4":"गलत उत्तर पर नकारात्मक अंकन है: प्रत्येक गलत उत्तर के लिए 0.33 अंक काटे जाएंगे।","instruction5":"प्रत्येक सही उत्तर के लिए 1 अंक दिया जाएगा।","instruction6":"प्रयास न किए गए प्रश्नों के लिए कोई अंक नहीं काटा जाएगा।","instruction7":"कृपया सुनिश्चित करें कि आप परीक्षा सबमिट करने से पहले या ब्राउज़र को बंद करने से पहले परीक्षा पूरी कर लें।","defaultLangMessage":"आपकी परीक्षा की डिफ़ॉल्ट भाषा है: हिन्दी","defaultLangDisclaimer":"सभी प्रश्न इसी भाषा में प्रदर्शित होंगे। इसे बाद में बदला नहीं जा सकता।","agreeCheckboxLabel":"मैंने सभी निर्देशों को ध्यान से पढ़ लिया है और समझ लिया है, और मैं उनका पालन करने के लिए सहमत हूं।","proceedButton":"मैं शुरू करने के लिए तैयार हूं","backButton":"पीछे जाएं"},"language":"hi"}</script>
+  <script id="quiz-data" type="application/json">{"quizTitle":"करेंट अफेयर्स और सामान्य ज्ञान प्रश्नोत्तरी","questions":[{"id":0,"text":"नेपाल ने सरकार विरोधी प्रदर्शनों के पीड़ितों को श्रद्धांजली देने के लिए किस तारीख को 'राष्ट्रीय शोक दिवस' के रूप में मनाने की घोषणा की है?","options":["17 सितंबर","15 सितंबर","18 सितंबर","20 सितंबर"],"correctIndex":0,"explanation":"नेपाल ने सरकार विरोधी प्रदर्शनों के पीड़ितों को श्रद्धांजली देने के लिए 17 सितंबर को 'राष्ट्रीय शोक दिवस' के रूप में मनाने की घोषणा की है।","reference":"स्रोत: द हिमालयन टाइम्स, सितंबर 2025","image":""},{"id":1,"text":"केंद्रीय गृह मंत्री अमित शाह ने भारत के सबसे बड़े और अत्यधिक आधुनिक खेल परिसर का उद्घाटन किस शहर में किया है?","options":["नई दिल्ली","अहमदाबाद","मुंबई","चेन्नई"],"correctIndex":1,"explanation":"केंद्रीय गृह मंत्री अमित शाह ने अहमदाबाद में भारत के सबसे बड़े और अत्यधिक आधुनिक खेल परिसर का उद्घाटन किया है।","reference":"स्रोत: पीटीआई, सितंबर 2025","image":""},{"id":2,"text":"फ्रीडम एज सैन्य अभ्यास का आयोजन संयुक्त राज्य अमेरिका, दक्षिण कोरिया और किस देश द्वारा संयुक्त रूप से किया जाता है?","options":["भारत","चीन","जापान","ऑस्ट्रेलिया"],"correctIndex":2,"explanation":"फ्रीडम एज सैन्य अभ्यास का आयोजन संयुक्त राज्य अमेरिका, दक्षिण कोरिया और जापान द्वारा संयुक्त रूप से किया जाता है।","reference":"स्रोत: रॉयटर्स, सितंबर 2025","image":""},{"id":3,"text":"केन्द्रीय गृह मंत्री अमित शाह ने एंटी-नार्कोटिक्स टास्क फोर्स (ANTF) प्रमुखों के दूसरे राष्ट्रीय सम्मेलन के उद्घाटन सत्र को कहाँ संबोधित किया है?","options":["बेंगलुरु","कोलकाता","नई दिल्ली","हैदराबाद"],"correctIndex":2,"explanation":"केन्द्रीय गृह मंत्री अमित शाह ने नई दिल्ली में एंटी-नार्कोटिक्स टास्क फोर्स (ANTF) प्रमुखों के दूसरे राष्ट्रीय सम्मेलन के उद्घाटन सत्र को संबोधित किया है।","reference":"स्रोत: एएनआई, सितंबर 2025","image":""},{"id":4,"text":"हाल ही में भारतीय नौसेना ने समुद्री सुरक्षा मजबूत करने के लिए कौन-सा स्वदेशी युद्ध पोत अपने बेड़े में शामिल किया है?","options":["विक्रांत","शिवालिक","सह्याद्री","एंड्रोथ"],"correctIndex":3,"explanation":"हाल ही में भारतीय नौसेना ने समुद्री सुरक्षा मजबूत करने के लिए 'एंड्रोथ' नामक स्वदेशी युद्ध पोत को अपने बेड़े में शामिल किया है।","reference":"स्रोत: द हिंदू, सितंबर 2025","image":""},{"id":5,"text":"जुलाई, 2025 तक पूर्वोत्तर भारत में कितने किलोमीटर लंबे राष्ट्रीय राजमार्गों का निर्माण किया गया है?","options":["15,000 किलोमीटर","16,207 किलोमीटर","17,500 किलोमीटर","18,000 किलोमीटर"],"correctIndex":1,"explanation":"जुलाई, 2025 तक पूर्वोत्तर भारत में 16,207 किलोमीटर लंबे राष्ट्रीय राजमार्गों का निर्माण किया गया है।","reference":"स्रोत: पीआईबी, सितंबर 2025","image":""},{"id":6,"text":"अगस्त 2025 में थोक मूल्य सूचकांक (WPI) आधारित मुद्रास्फीति बढ़कर कितना प्रतिशत हो गई है?","options":["0.40%","0.52%","0.65%","0.70%"],"correctIndex":1,"explanation":"अगस्त 2025 में थोक मूल्य सूचकांक (WPI) आधारित मुद्रास्फीति बढ़कर 0.52% हो गई है।","reference":"स्रोत: वाणिज्य और उद्योग मंत्रालय, सितंबर 2025","image":""},{"id":7,"text":"भारतीय नौसेना जहाज कदमत्त, अपनी तीन महीने की तैनाती के हिस्से के रूप में एक सद्भावना यात्रा के लिए 15 सितंबर 2025 को किस देश पहुंचा है?","options":["मालदीव","श्रीलंका","फिजी","इंडोनेशिया"],"correctIndex":2,"explanation":"भारतीय नौसेना जहाज कदमत्त 15 सितंबर 2025 को एक सद्भावना यात्रा के लिए फिजी पहुंचा है।","reference":"स्रोत: इंडिया टुडे, सितंबर 2025","image":""},{"id":8,"text":"हाल ही में असम और पूर्वोत्तर भारत के कुछ हिस्सों में कितने तीव्रता का भूकंप आया?","options":["4.5","5.0","5.8","6.2"],"correctIndex":2,"explanation":"हाल ही में असम और पूर्वोत्तर भारत के कुछ हिस्सों में 5.8 तीव्रता का भूकंप आया था।","reference":"स्रोत: IMD, सितंबर 2025","image":""},{"id":9,"text":"हाल ही में किस देश में सबिता भंडारी को पहली महिला अटॉर्नी जनरल नियुक्त किया गया है?","options":["भारत","बांग्लादेश","नेपाल","भूटान"],"correctIndex":2,"explanation":"नेपाल में सबिता भंडारी को पहली महिला अटॉर्नी जनरल नियुक्त किया गया है।","reference":"स्रोत: काठमांडू पोस्ट, सितंबर 2025","image":""},{"id":10,"text":"पीएम विश्वकर्मा योजना वर्ष 2023 में किस तारीख को भारत सरकार द्वारा शुरू की गई थी?","options":["15 अगस्त","2 अक्टूबर","17 सितंबर","26 जनवरी"],"correctIndex":2,"explanation":"पीएम विश्वकर्मा योजना वर्ष 2023 में 17 सितंबर को भारत सरकार द्वारा शुरू की गई थी।","reference":"स्रोत: पीआईबी, सितंबर 2023","image":""},{"id":11,"text":"वर्तमान में केंद्र सरकार द्वारा कितने चिन्हित जिलों में नशा मुक्त भारत अभियान (एनएमबीए) चलाया जा रहा है?","options":["250 जिले","300 जिले","372 जिले","400 जिले"],"correctIndex":2,"explanation":"वर्तमान में केंद्र सरकार द्वारा 372 चिन्हित जिलों में नशा मुक्त भारत अभियान (एनएमबीए) चलाया जा रहा है।","reference":"स्रोत: एनडीटीवी, सितंबर 2025","image":""},{"id":12,"text":"भारत के सकल घरेलू उत्पाद (GDP) की उत्सर्जन तीव्रता वर्ष 2005 से 2020 के बीच कितने प्रतिशत कम हो गई है?","options":["25%","30%","36%","40%"],"correctIndex":2,"explanation":"भारत के सकल घरेलू उत्पाद (GDP) की उत्सर्जन तीव्रता वर्ष 2005 से 2020 के बीच 36% कम हो गई है。","reference":"स्रोत: पर्यावरण मंत्रालय, सितंबर 2025","image":""},{"id":13,"text":"हाल ही में किसको नई दिल्ली स्थित अखिल भारतीय आयुर्वेद संस्थान (एआईआईए) का नया निदेशक नियुक्त किया गया है?","options":["डॉ. रमेश चंद्र","प्रोफ़ेसर प्रदीप कुमार प्रजापति","डॉ. सुनीता वर्मा","प्रोफ़ेसर आलोक गुप्ता"],"correctIndex":1,"explanation":"प्रोफ़ेसर प्रदीप कुमार प्रजापति को नई दिल्ली स्थित अखिल भारतीय आयुर्वेद संस्थान (एआईआईए) का नया निदेशक नियुक्त किया गया है।","reference":"स्रोत: आयुष मंत्रालय, सितंबर 2025","image":""},{"id":14,"text":"वर्तमान में भारतीय ऑटो मोबाइल उद्योग कितने करोड़ से अधिक प्रत्यक्ष और अप्रत्यक्ष नौकरियों का सृजन करता है?","options":["10 मिलियन नौकरियां","20 मिलियन नौकरियां","30 मिलियन नौकरियां","35 मिलियन नौकरियां"],"correctIndex":3,"explanation":"वर्तमान में भारतीय ऑटो मोबाइल उद्योग 35 मिलियन से अधिक प्रत्यक्ष और अप्रत्यक्ष नौकरियों का सृजन करता है।","reference":"स्रोत: सियाम, सितंबर 2025","image":""},{"id":15,"text":"भारत में ब्रिटिश शासन की शुरुआत के संदर्भ में कौन-सा युद्ध महत्वपूर्ण है?","options":["बक्सर का युद्ध","प्लासी का युद्ध","पानीपत का तीसरा युद्ध","कर्नाटक युद्ध"],"correctIndex":1,"explanation":"भारत में ब्रिटिश शासन की शुरुआत के संदर्भ में प्लासी का युद्ध महत्वपूर्ण है।","reference":"स्रोत: एनसीईआरटी","image":""},{"id":16,"text":"भारतीय संविधान की कौन-सी अनुसूची राज्य सभा में सीटों के आवंटन से संबंधित है?","options":["तीसरी अनुसूची","चौथी अनुसूची","पांचवीं अनुसूची","छठी अनुसूची"],"correctIndex":1,"explanation":"भारतीय संविधान की चौथी अनुसूची राज्य सभा में सीटों के आवंटन से संबंधित है।","reference":"स्रोत: भारत का संविधान","image":""},{"id":17,"text":"किस दर्रे से होकर सतलज नदी भारत में प्रवेश करती है?","options":["नाथुला","लिपुलेख","शिपकी ला","जोजी ला"],"correctIndex":2,"explanation":"सतलज नदी शिपकी ला दर्रे से होकर भारत में प्रवेश करती है।","reference":"स्रोत: एनसीईआरटी भूगोल","image":""},{"id":18,"text":"किस इतिहासकार द्वारा समुद्रगुप्त को 'भारत का नेपोलियन' कहा गया?","options":["जेम्स मिल","वी. ए. स्मिथ","आर. सी. मजूमदार","आर. एस. शर्मा"],"correctIndex":1,"explanation":"वी. ए. स्मिथ नामक इतिहासकार द्वारा समुद्रगुप्त को 'भारत का नेपोलियन' कहा गया था।","reference":"स्रोत: एनसीईआरटी इतिहास","image":""},{"id":19,"text":"राज्यों में संवैधानिक तंत्र के विफल होने की स्थिति में किस अनुच्छेद के तहत 'राष्ट्रपति शासन' लगाया जाता है?","options":["अनुच्छेद 352","अनुच्छेद 356","अनुच्छेद 360","अनुच्छेद 368"],"correctIndex":1,"explanation":"राज्यों में संवैधानिक तंत्र के विफल होने की स्थिति में अनुच्छेद 356 के तहत 'राष्ट्रपति शासन' लगाया जाता है।","reference":"स्रोत: भारत का संविधान","image":""},{"id":20,"text":"भारतीय नौसेना जहाज कदमत्त की फिजी यात्रा का मुख्य उद्देश्य क्या था?","options":["एक नया सैन्य अड्डा स्थापित करना","व्यापारिक समझौते पर हस्ताक्षर करना","एक सद्भावना यात्रा","आपदा राहत कार्य में सहायता"],"correctIndex":2,"explanation":"भारतीय नौसेना जहाज कदमत्त, अपनी तीन महीने की तैनाती के हिस्से के रूप में एक सद्भावना यात्रा के लिए फिजी पहुंचा है। यह दर्शाता है कि यात्रा का मुख्य उद्देश्य सद्भावना था।","reference":"स्रोत: इंडिया टुडे, सितंबर 2025","image":""},{"id":21,"text":"केंद्रीय गृह मंत्री अमित शाह ने नई दिल्ली में किस प्रकार के सम्मेलन के उद्घाटन सत्र को संबोधित किया?","options":["पुलिस महानिदेशकों का वार्षिक सम्मेलन","एंटी-नार्कोटिक्स टास्क फोर्स (ANTF) प्रमुखों का दूसरा राष्ट्रीय सम्मेलन","राज्य के मुख्यमंत्रियों का सम्मेलन","पर्यावरण मंत्रियों का राष्ट्रीय सम्मेलन"],"correctIndex":1,"explanation":"केन्द्रीय गृह मंत्री अमित शाह ने नई दिल्ली में एंटी-नार्कोटिक्स टास्क फोर्स (ANTF) प्रमुखों के दूसरे राष्ट्रीय सम्मेलन के उद्घाटन सत्र को संबोधित किया है।","reference":"स्रोत: एएनआई, सितंबर 2025","image":""},{"id":22,"text":"करेंट अफेयर्स में उल्लिखित किस देश ने हाल ही में 'राष्ट्रीय शोक दिवस' घोषित किया और अपनी पहली महिला अटॉर्नी जनरल की नियुक्ति भी की?","options":["भारत","जापान","फिजी","नेपाल"],"correctIndex":3,"explanation":"नेपाल ने 17 सितंबर को 'राष्ट्रीय शोक दिवस' के रूप में मनाने की घोषणा की है (प्रश्न 1)। साथ ही, नेपाल में सबिता भंडारी को पहली महिला अटॉर्नी जनरल नियुक्त किया गया है (प्रश्न 10)। इस प्रकार, नेपाल दोनों घटनाओं से संबंधित है।","reference":"स्रोत: विभिन्न समाचार","image":""},{"id":23,"text":"करेंट अफेयर्स में उल्लिखित कौन से केंद्रीय मंत्री अहमदाबाद में एक खेल परिसर का उद्घाटन करने और नई दिल्ली में एक सम्मेलन को संबोधित करने में शामिल थे?","options":["राजनाथ सिंह","एस. जयशंकर","अमित शाह","निर्मला सीतारमण"],"correctIndex":2,"explanation":"पाठ में दो अलग-अलग घटनाओं का उल्लेख है जिनमें केंद्रीय गृह मंत्री अमित शाह शामिल थे: अहमदाबाद में भारत के सबसे बड़े और अत्यधिक आधुनिक खेल परिसर का उद्घाटन (प्रश्न 2) और नई दिल्ली में एंटी-नार्कोटिक्स टास्क फोर्स (ANTF) प्रमुखों के दूसरे राष्ट्रीय सम्मेलन के उद्घाटन सत्र को संबोधित करना (प्रश्न 4)।","reference":"स्रोत: विभिन्न समाचार","image":""},{"id":24,"text":"करेंट अफेयर्स में उल्लिखित कौन सी दो महत्वपूर्ण घटनाएँ 17 सितंबर को हुई थीं, लेकिन अलग-अलग वर्षों में (2025 और 2023)?","options":["नेपाल का राष्ट्रीय शोक दिवस और पीएम विश्वकर्मा योजना का शुभारंभ","अमित शाह द्वारा खेल परिसर का उद्घाटन और नशा मुक्त भारत अभियान का शुभारंभ","भारतीय नौसेना जहाज कदमत्त की फिजी यात्रा और असम में भूकंप","सबिता भंडारी की नियुक्ति और जीडीपी उत्सर्जन तीव्रता में कमी"],"correctIndex":0,"explanation":"नेपाल ने 17 सितंबर 2025 को 'राष्ट्रीय शोक दिवस' के रूप में मनाने की घोषणा की है (प्रश्न 1)। वहीं, पीएम विश्वकर्मा योजना वर्ष 2023 में 17 सितंबर को भारत सरकार द्वारा शुरू की गई थी (प्रश्न 11)। ये दोनों घटनाएँ 17 सितंबर को हुईं लेकिन अलग-अलग वर्षों में।","reference":"स्रोत: विभिन्न समाचार","image":""}],"totalTime":900,"negativeMarking":0.3333333333333333,"appName":"MissionSelection","youtubeLink":"","telegramLink":"https://t.me/MissionSelectionIndia","instructionStrings":{"screenTitle":"परीक्षा निर्देश","quizNamePrefix":"परीक्षा का नाम:","totalTime":"समय: 15 मिनट","totalMarks":"पूर्णांक: 25","instructionsHeader":"कृपया निम्नलिखित निर्देशों को ध्यानपूर्वक पढ़ें:","instruction1":"परीक्षा में 25 प्रश्न हैं।","instruction2":"प्रत्येक प्रश्न में दिए गए 4 विकल्पों में से केवल 1 विकल्प सही उत्तर के रूप में उपलब्ध होगा।","instruction3":"आपको परीक्षा समाप्त करने के लिए 15 मिनट का समय मिलेगा।","instruction4":"गलत उत्तर पर नकारात्मक अंकन है: प्रत्येक गलत उत्तर के लिए 0.33 अंक काटे जाएंगे।","instruction5":"प्रत्येक सही उत्तर के लिए 1 अंक दिया जाएगा।","instruction6":"प्रयास न किए गए प्रश्नों के लिए कोई अंक नहीं काटा जाएगा।","instruction7":"कृपया सुनिश्चित करें कि आप परीक्षा सबमिट करने से पहले या ब्राउज़र को बंद करने से पहले परीक्षा पूरी कर लें।","defaultLangMessage":"आपकी परीक्षा की डिफ़ॉल्ट भाषा है: हिन्दी","defaultLangDisclaimer":"सभी प्रश्न इसी भाषा में प्रदर्शित होंगे। इसे बाद में बदला नहीं जा सकता।","agreeCheckboxLabel":"मैंने सभी निर्देशों को ध्यान से पढ़ लिया है और समझ लिया है, और मैं उनका पालन करने के लिए सहमत हूं।","proceedButton":"मैं शुरू करने के लिए तैयार हूं","backButton":"पीछे जाएं"},"language":"hi"}</script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
         const S = { // State
-            appPhase: 'registration',
+            appPhase: 'instructions',
             questions: [],
             userAnswers: [],
             currentQuestionIndex: 0,
@@ -538,8 +682,7 @@
             isSidebarCollapsed: true,
             quizResults: null,
             reviewIndex: 0,
-            studentName: '',
-            studentMobile: ''
+            theme: 'light'
         };
 
         const C = JSON.parse(document.getElementById('quiz-data').textContent);
@@ -547,25 +690,8 @@
         
         const root = document.querySelector('.app-container');
 
-        // Registration Template
-        const registrationTemplate = () => `
-            <div class="registration-content">
-                <h1>स्वागत है MissionSelection में!</h1>
-                <p class="text-sm" style="margin-bottom: 2rem;">क्विज शुरू करने से पहले, कृपया अपना विवरण दर्ज करें।</p>
-                <form id="studentForm">
-                    <div class="form-group">
-                        <label for="studentName">नाम:</label>
-                        <input type="text" id="studentName" required placeholder="अपना पूरा नाम दर्ज करें">
-                    </div>
-                    <div class="form-group">
-                        <label for="studentMobile">मोबाइल नंबर:</label>
-                        <input type="tel" id="studentMobile" required placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}">
-                    </div>
-                    <div id="errorMessage" class="error-message hidden"></div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">जारी रखें</button>
-                </form>
-                <p style="margin-top: 1rem; font-size: 0.875rem; color: #4a5568;">आपका डेटा सुरक्षित रहेगा और केवल विश्लेषण के लिए उपयोग होगा।</p>
-            </div>`;
+        // --- TEMPLATE RENDERERS ---
+        const render = (template, target) => { target.innerHTML = template; };
 
         const instructionsTemplate = () => {
             const i = C.instructionStrings;
@@ -574,8 +700,6 @@
                 <h1>${i.screenTitle}</h1>
                 <div class="instructions-summary">
                     <p><strong>${i.quizNamePrefix}</strong> ${C.quizTitle}</p>
-                    <p><strong>नाम:</strong> ${S.studentName}</p>
-                    <p><strong>मोबाइल:</strong> ${S.studentMobile}</p>
                     <p>${i.totalTime}</p>
                     <p>${i.totalMarks}</p>
                 </div>
@@ -607,20 +731,19 @@
                     <div class="timer-display">
                         <svg class="svg-icon" style="width:1.25rem;height:1.25rem;"><use href="#icon-clock"></use></svg>
                         <span id="timer">00:00</span>
+                        <div class="timer-progress" id="timerProgress"></div>
                         <button id="pauseTimerBtn" class="control-btn" title="Pause Timer">
                             <svg class="svg-icon" id="pauseIcon"><use href="#icon-pause"></use></svg>
                             <svg class="svg-icon hidden" id="playIcon"><use href="#icon-play"></use></svg>
                         </button>
                     </div>
-                    <div id="progressContainer" style="flex-grow: 1; margin: 0 1rem;">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill"></div>
-                        </div>
-                    </div>
                     <label class="toggle-switch" title="Toggle Auto-Next">
                         <input type="checkbox" id="autoNextToggle" ${S.autoNext ? 'checked' : ''}>
                         <span class="slider"></span>
                     </label>
+                    <button id="themeToggle" class="theme-toggle" title="Toggle Theme">
+                        <svg class="svg-icon" id="themeIcon"><use href="#icon-${S.theme === 'light' ? 'moon' : 'sun'}"></use></svg>
+                    </button>
                     <button id="fullscreenBtn" class="control-btn" title="Toggle Fullscreen">
                         <svg class="svg-icon" id="fullscreenEnterIcon"><use href="#icon-fullscreen-enter"></use></svg>
                         <svg class="svg-icon hidden" id="fullscreenExitIcon"><use href="#icon-fullscreen-exit"></use></svg>
@@ -630,19 +753,47 @@
             <div class="quiz-main-area">
                 <div class="question-pane">
                     <div class="question-header">
-                        <div id="questionNumber" class="font-bold"></div>
-                        <div id="questionMarks" class="text-sm"></div>
+                        <div>
+                            <div id="questionNumber" class="font-bold"></div>
+                            <div id="questionMarks" class="text-sm"></div>
+                        </div>
+                        <div id="questionStats" class="text-sm"></div>
                     </div>
                     <p id="questionText" class="question-text"></p>
+                    <img id="questionImage" class="question-image hidden" src="" alt="Question image">
                     <div id="optionsContainer" class="options-grid"></div>
                     <div class="question-actions">
                         <button id="markReviewBtn" class="btn btn-secondary">Mark & Next</button>
                         <button id="clearResponseBtn" class="btn btn-secondary">Clear Response</button>
                         <button id="saveNextBtn" class="btn btn-primary"></button>
                     </div>
+                    <div class="quick-nav-buttons">
+                        <button id="firstQuestionBtn" class="btn btn-tertiary">First</button>
+                        <button id="prevQuestionBtn" class="btn btn-tertiary">Previous</button>
+                        <button id="nextQuestionBtn" class="btn btn-tertiary">Next</button>
+                        <button id="lastQuestionBtn" class="btn btn-tertiary">Last</button>
+                    </div>
                 </div>
                 <div id="quizSidebar" class="quiz-sidebar collapsed">
                     <h3 class="palette-header">Question Palette</h3>
+                    <div class="status-summary">
+                        <div class="status-item">
+                            <div class="status-color" style="background-color: var(--bg-answered); border-color: var(--border-answered);"></div>
+                            <span>Answered</span>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-color" style="background-color: var(--bg-not-answered); border-color: var(--border-not-answered);"></div>
+                            <span>Not Answered</span>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-color" style="background-color: var(--bg-marked); border-color: var(--border-marked);"></div>
+                            <span>Marked for Review</span>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-color" style="background-color: var(--bg-not-visited); border-color: var(--border-not-visited);"></div>
+                            <span>Not Visited</span>
+                        </div>
+                    </div>
                     <div id="questionPalette" class="question-palette"></div>
                     <div class="mt-auto">
                         <button id="submitQuizBtn" class="btn btn-primary" style="width: 100%;">Submit Test</button>
@@ -652,7 +803,7 @@
                     <svg class="svg-icon"><use href="#icon-chevron-left"></use></svg>
                 </button>
             </div>`;
-
+        
         const resultsTemplate = () => {
             const r = S.quizResults;
             const feedback = getMotivationalFeedback(r.percentage);
@@ -669,8 +820,6 @@
                     <div class="summary-card">
                         <h3>Score Summary</h3>
                         <ul class="summary-list">
-                            <li><span>नाम:</span> <span class="font-semibold">${S.studentName}</span></li>
-                            <li><span>मोबाइल:</span> <span class="font-semibold">${S.studentMobile}</span></li>
                             <li><span>Total Questions:</span> <span class="font-semibold">${r.totalQuestions}</span></li>
                             <li style="color: var(--color-correct);"><span>Correct Answers:</span> <span class="font-semibold">${r.correct}</span></li>
                             <li style="color: var(--color-incorrect);"><span>Incorrect Answers:</span> <span class="font-semibold">${r.incorrect}</span></li>
@@ -683,16 +832,18 @@
                         <div id="chart-container"></div>
                     </div>
                     <div class="summary-card social-card" style="grid-column: 1 / -1;">
-                         <h3>Stay Connected with MissionSelection!</h3>
-                         <p>Join our Telegram channel for more quizzes, updates and latest current affairs.</p>
+                         <h3>Stay Connected!</h3>
+                         <p>Join our channels for more quizzes and updates.</p>
                          <div style="display:flex; justify-content:center; gap:1rem; margin-top:1rem;">
-                            <a href="${C.telegramLink}" target="_blank" class="btn"><svg class="svg-icon" style="width:1.25rem;height:1.25rem;"><use href="#icon-telegram"></use></svg> Join Telegram</a>
+                            <a href="${C.youtubeLink}" target="_blank" class="btn"><svg class="svg-icon" style="width:1.25rem;height:1.25rem;"><use href="#icon-youtube"></use></svg> YouTube</a>
+                            <a href="${C.telegramLink}" target="_blank" class="btn"><svg class="svg-icon" style="width:1.25rem;height:1.25rem;"><use href="#icon-telegram"></use></svg> Telegram</a>
                          </div>
                     </div>
                 </div>
                 <div class="results-actions">
                     <button id="reviewAnswersBtn" class="btn btn-primary">View Solutions</button>
                     <button id="reattemptQuizBtn" class="btn btn-secondary">Re-attempt Quiz</button>
+                    <button id="printResultsBtn" class="btn btn-tertiary">Print Results</button>
                 </div>
             </div>`;
         };
@@ -709,11 +860,13 @@
                         <div id="reviewQuestionStatus" class="review-q-status"></div>
                     </div>
                     <p id="reviewQuestionText" class="review-q-text"></p>
+                    <img id="reviewQuestionImage" class="question-image hidden" src="" alt="Question image">
                     <div id="reviewOptionsContainer" class="options-grid"></div>
                     <button id="toggleExplanationBtn" class="btn btn-secondary" style="margin-top: 1.5rem;">Show Solution</button>
                     <div id="reviewExplanation" class="review-explanation hidden">
                         <h4><svg class="svg-icon" style="width:1.25rem;height:1.25rem;"><use href="#icon-lightbulb"></use></svg>Explanation</h4>
                         <p id="explanationText"></p>
+                        <p class="text-sm mt-4" id="referenceText"></p>
                     </div>
                      <div class="review-actions">
                         <button id="prevReviewBtn" class="btn btn-secondary">Previous</button>
@@ -733,21 +886,31 @@
             </div>
             `;
 
-        // Render Function
-        const render = (template, target) => { target.innerHTML = template; };
-
-        // Core Logic
+        // --- CORE LOGIC ---
         function init() {
             S.questions = C.questions;
             S.timeLeft = C.totalTime;
-            showScreen('registration');
+            
+            // Try to load saved state from localStorage
+            const savedState = localStorage.getItem('quizState');
+            if (savedState) {
+                try {
+                    const parsedState = JSON.parse(savedState);
+                    if (confirm('We found a previous quiz in progress. Do you want to continue?')) {
+                        Object.assign(S, parsedState);
+                    }
+                } catch (e) {
+                    console.error('Error loading saved state:', e);
+                }
+            }
+            
+            showScreen('instructions');
         }
 
         function showScreen(screenName) {
             document.querySelectorAll('.card').forEach(s => s.classList.add('hidden'));
             const screenEl = document.getElementById(screenName + 'Screen');
             
-            if (screenName === 'registration') render(registrationTemplate(), screenEl);
             if (screenName === 'instructions') render(instructionsTemplate(), screenEl);
             if (screenName === 'quiz') render(quizTemplate(), screenEl);
             if (screenName === 'results') render(resultsTemplate(), screenEl);
@@ -755,89 +918,42 @@
 
             screenEl.classList.remove('hidden');
             S.appPhase = screenName;
-            addEventListeners();
+            addEventListeners(); // Re-add listeners for new DOM
             
             if (screenName === 'quiz') postQuizRender();
             if (screenName === 'results') postResultsRender();
             if (screenName === 'review') postReviewRender();
         }
 
-        // Event Listeners
+        // --- SCREEN-SPECIFIC LOGIC & LISTENERS ---
         function addEventListeners() {
-            if (S.appPhase === 'registration') {
-                const form = document.getElementById('studentForm');
-                form.onsubmit = async (e) => {
-                    e.preventDefault();
-                    const name = document.getElementById('studentName').value.trim();
-                    const mobile = document.getElementById('studentMobile').value.trim();
-                    const errorEl = document.getElementById('errorMessage');
-
-                    if (!name || !mobile || mobile.length !== 10 || !/^\d{10}$/.test(mobile)) {
-                        errorEl.textContent = 'कृपया वैध नाम और 10 अंकों का मोबाइल नंबर दर्ज करें।';
-                        errorEl.classList.remove('hidden');
-                        return;
-                    }
-
-                    errorEl.classList.add('hidden');
-
-                    // Apps Script को POST करें (Updated Error Handling)
-                    try {
-                        console.log('Sending to URL:', C.scriptUrl); // Console में URL चेक करें
-                        console.log('Data being sent:', { name, mobile, quizTitle: C.quizTitle }); // Data चेक करें
-
-                        const response = await fetch(C.scriptUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ name, mobile, quizTitle: C.quizTitle })
-                        });
-
-                        console.log('Response Status:', response.status); // Status चेक करें
-
-                        if (!response.ok) {
-                            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                        }
-
-                        const result = await response.json();
-                        console.log('Response JSON:', result); // Full response चेक करें
-
-                        if (result.status === 'success') {
-                            S.studentName = name;
-                            S.studentMobile = mobile;
-                            console.log('Success: Moving to instructions');
-                            showScreen('instructions');
-                        } else {
-                            errorEl.textContent = `सर्वर एरर: ${result.message || 'Unknown error'}`;
-                            errorEl.classList.remove('hidden');
-                        }
-                    } catch (err) {
-                        console.error('Fetch Error Details:', err); // Detailed error console में
-                        errorEl.textContent = `डेटा सेव करने में त्रुटि: ${err.message}. कृपया URL चेक करें या इंटरनेट कनेक्शन देखें।`;
-                        errorEl.classList.remove('hidden');
-                    }
-                };
-            } else if (S.appPhase === 'instructions') {
+            if (S.appPhase === 'instructions') {
                 const agree = document.getElementById('agreeCheckbox');
                 const proceed = document.getElementById('proceedButton');
                 agree.onchange = () => { proceed.disabled = !agree.checked; };
                 proceed.onclick = startQuiz;
-                document.getElementById('backButton').onclick = () => showScreen('registration');
+                document.getElementById('backButton').onclick = () => window.close();
             } else if (S.appPhase === 'quiz') {
                 document.getElementById('pauseTimerBtn').onclick = toggleTimerPause;
-                document.getElementById('autoNextToggle').onchange = (e) => { S.autoNext = e.target.checked; };
+                document.getElementById('autoNextToggle').onchange = (e) => { S.autoNext = e.target.checked; saveState(); };
                 document.getElementById('fullscreenBtn').onclick = toggleFullScreen;
                 document.getElementById('markReviewBtn').onclick = handleMarkForReview;
                 document.getElementById('clearResponseBtn').onclick = handleClearResponse;
                 document.getElementById('saveNextBtn').onclick = handleSaveAndNext;
                 document.getElementById('submitQuizBtn').onclick = submitQuiz;
                 document.getElementById('sidebarToggle').onclick = toggleSidebar;
+                document.getElementById('firstQuestionBtn').onclick = () => navigateToQuestion(0);
+                document.getElementById('prevQuestionBtn').onclick = () => navigateToQuestion(S.currentQuestionIndex - 1);
+                document.getElementById('nextQuestionBtn').onclick = () => navigateToQuestion(S.currentQuestionIndex + 1);
+                document.getElementById('lastQuestionBtn').onclick = () => navigateToQuestion(S.questions.length - 1);
+                document.getElementById('themeToggle').onclick = toggleTheme;
+                
+                // Add beforeunload event to warn user
+                window.addEventListener('beforeunload', handleBeforeUnload);
             } else if (S.appPhase === 'results') {
                 document.getElementById('reviewAnswersBtn').onclick = startReview;
-                document.getElementById('reattemptQuizBtn').onclick = () => { 
-                    S.studentName = ''; 
-                    S.studentMobile = ''; 
-                    S.quizResults = null;
-                    showScreen('registration'); 
-                };
+                document.getElementById('reattemptQuizBtn').onclick = startQuiz;
+                document.getElementById('printResultsBtn').onclick = printResults;
             } else if (S.appPhase === 'review') {
                 document.getElementById('exitReviewBtn').onclick = () => showScreen('results');
                 document.getElementById('prevReviewBtn').onclick = () => navigateReview(-1);
@@ -846,7 +962,18 @@
             }
         }
 
-        // Quiz Functions (Unchanged)
+        function removeEventListeners() {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        }
+
+        function handleBeforeUnload(e) {
+            if (S.appPhase === 'quiz') {
+                e.preventDefault();
+                e.returnValue = 'Your quiz progress will be lost if you leave. Are you sure?';
+                return e.returnValue;
+            }
+        }
+
         function startQuiz() {
             S.currentQuestionIndex = 0;
             S.timeLeft = C.totalTime;
@@ -855,15 +982,22 @@
             }));
             S.userAnswers[0].status = C.QuestionStatus.NotAnswered;
             showScreen('quiz');
-            document.documentElement.requestFullscreen().catch(err => console.warn(`Fullscreen error: ${err.message}`));
+            
+            // Clear any saved state when starting a new quiz
+            localStorage.removeItem('quizState');
+            
+            // Try to enter fullscreen
+            document.documentElement.requestFullscreen().catch(err => {
+                console.warn(`Could not automatically enter fullscreen: ${err.message}`);
+            });
         }
 
         function postQuizRender() {
             updateTimerDisplay();
-            updateProgressBar();
             renderQuestion();
             renderPalette();
             if (!S.timerInterval) startTimer();
+            updateQuestionStats();
         }
 
         function renderQuestion() {
@@ -872,6 +1006,16 @@
             document.getElementById('questionNumber').textContent = `Question ${S.currentQuestionIndex + 1} of ${S.questions.length}`;
             document.getElementById('questionMarks').textContent = `Marks: +1.00 / -${C.negativeMarking.toFixed(2)}`;
             document.getElementById('questionText').textContent = q.text;
+            
+            // Handle question image if available
+            const questionImage = document.getElementById('questionImage');
+            if (q.image) {
+                questionImage.src = q.image;
+                questionImage.classList.remove('hidden');
+            } else {
+                questionImage.classList.add('hidden');
+            }
+            
             const opts = document.getElementById('optionsContainer');
             opts.innerHTML = '';
             const answer = S.userAnswers[S.currentQuestionIndex];
@@ -879,11 +1023,32 @@
                 const btn = document.createElement('button');
                 btn.className = 'option-btn';
                 if (answer.selectedOptionIndex === i) btn.classList.add('selected');
-                btn.innerHTML = `<span class="option-prefix">${String.fromCharCode(65 + i)}.</span><span>${opt}</span>`;
+                btn.innerHTML = `
+                    <span class="option-prefix">${String.fromCharCode(65 + i)}.</span>
+                    <span>${opt}</span>
+                    <svg class="option-status-icon correct" style="color: var(--color-correct);"><use href="#icon-check-circle"></use></svg>
+                    <svg class="option-status-icon incorrect" style="color: var(--color-incorrect);"><use href="#icon-x-circle"></use></svg>
+                `;
                 btn.onclick = () => selectOption(i);
                 opts.appendChild(btn);
             });
             document.getElementById('saveNextBtn').textContent = (S.currentQuestionIndex === S.questions.length - 1) ? 'Save & Finish' : 'Save & Next';
+            
+            // Update navigation buttons state
+            document.getElementById('firstQuestionBtn').disabled = S.currentQuestionIndex === 0;
+            document.getElementById('prevQuestionBtn').disabled = S.currentQuestionIndex === 0;
+            document.getElementById('nextQuestionBtn').disabled = S.currentQuestionIndex === S.questions.length - 1;
+            document.getElementById('lastQuestionBtn').disabled = S.currentQuestionIndex === S.questions.length - 1;
+        }
+
+        function updateQuestionStats() {
+            const answered = S.userAnswers.filter(a => a.status === C.QuestionStatus.Answered || a.status === C.QuestionStatus.AnsweredAndMarked).length;
+            const notAnswered = S.userAnswers.filter(a => a.status === C.QuestionStatus.NotAnswered).length;
+            const marked = S.userAnswers.filter(a => a.status === C.QuestionStatus.MarkedForReview || a.status === C.QuestionStatus.AnsweredAndMarked).length;
+            const notVisited = S.userAnswers.filter(a => a.status === C.QuestionStatus.NotVisited).length;
+            
+            document.getElementById('questionStats').textContent = 
+                `Answered: ${answered} | Not Answered: ${notAnswered} | Marked: ${marked} | Not Visited: ${notVisited}`;
         }
 
         function renderPalette() {
@@ -898,12 +1063,6 @@
                 p.appendChild(item);
             });
         }
-
-        function updateProgressBar() {
-            const progress = ((S.currentQuestionIndex + 1) / S.questions.length) * 100;
-            const fill = document.getElementById('progressFill');
-            if (fill) fill.style.width = progress + '%';
-        }
         
         function selectOption(index) {
             const answer = S.userAnswers[S.currentQuestionIndex];
@@ -911,20 +1070,24 @@
             answer.status = answer.isMarked ? C.QuestionStatus.AnsweredAndMarked : C.QuestionStatus.Answered;
             renderQuestion(); 
             renderPalette();
-            updateProgressBar();
+            updateQuestionStats();
+            saveState();
+            
             if (S.autoNext && S.currentQuestionIndex < S.questions.length - 1) {
                 setTimeout(() => navigateToQuestion(S.currentQuestionIndex + 1), 300);
             }
         }
 
         function navigateToQuestion(index) {
+            if (index < 0 || index >= S.questions.length) return;
             if (index === S.currentQuestionIndex) return;
             S.currentQuestionIndex = index;
             const answer = S.userAnswers[index];
             if (answer.status === C.QuestionStatus.NotVisited) answer.status = C.QuestionStatus.NotAnswered;
             renderQuestion(); 
             renderPalette();
-            updateProgressBar();
+            updateQuestionStats();
+            saveState();
         }
         
         function handleSaveAndNext() {
@@ -937,6 +1100,7 @@
             answer.isMarked = !answer.isMarked;
             answer.status = answer.selectedOptionIndex !== null ? (answer.isMarked ? C.QuestionStatus.AnsweredAndMarked : C.QuestionStatus.Answered) : (answer.isMarked ? C.QuestionStatus.MarkedForReview : C.QuestionStatus.NotAnswered);
             handleSaveAndNext();
+            saveState();
         }
         
         function handleClearResponse() {
@@ -945,39 +1109,76 @@
             answer.status = answer.isMarked ? C.QuestionStatus.MarkedForReview : C.QuestionStatus.NotAnswered;
             renderQuestion(); 
             renderPalette();
-            updateProgressBar();
+            updateQuestionStats();
+            saveState();
         }
 
         function submitQuiz() {
             if (confirm('Are you sure you want to submit the test?')) {
                 stopTimer();
                 calculateResults();
+                removeEventListeners();
+                localStorage.removeItem('quizState');
                 showScreen('results');
             }
         }
 
-        // Timer Functions
-        function startTimer() { stopTimer(); S.timerInterval = setInterval(tick, 1000); }
-        function stopTimer() { clearInterval(S.timerInterval); S.timerInterval = null; }
+        // --- TIMER ---
+        function startTimer() { 
+            stopTimer(); 
+            S.timerInterval = setInterval(tick, 1000); 
+        }
+        
+        function stopTimer() { 
+            clearInterval(S.timerInterval); 
+            S.timerInterval = null; 
+        }
+        
         function tick() {
             if (S.isTimerPaused) return;
             S.timeLeft--;
             updateTimerDisplay();
-            if (S.timeLeft <= 0) { alert('Time is up!'); submitQuiz(); }
+            if (S.timeLeft <= 0) { 
+                alert('Time is up!'); 
+                submitQuiz(); 
+            }
         }
+        
         function updateTimerDisplay() {
             const mins = Math.floor(S.timeLeft / 60).toString().padStart(2, '0');
             const secs = (S.timeLeft % 60).toString().padStart(2, '0');
             const timerEl = document.getElementById('timer');
             if (timerEl) timerEl.textContent = `${mins}:${secs}`;
+            
+            // Update progress bar
+            const progressEl = document.getElementById('timerProgress');
+            if (progressEl) {
+                const progress = 100 - (S.timeLeft / C.totalTime * 100);
+                progressEl.style.transform = `scaleX(${progress / 100})`;
+            }
         }
+        
         function toggleTimerPause() {
             S.isTimerPaused = !S.isTimerPaused;
             document.getElementById('pauseIcon').classList.toggle('hidden', S.isTimerPaused);
             document.getElementById('playIcon').classList.toggle('hidden', !S.isTimerPaused);
+            saveState();
         }
-
-        // Results Functions
+        
+        // --- STATE MANAGEMENT ---
+        function saveState() {
+            const stateToSave = {
+                userAnswers: S.userAnswers,
+                currentQuestionIndex: S.currentQuestionIndex,
+                timeLeft: S.timeLeft,
+                isTimerPaused: S.isTimerPaused,
+                autoNext: S.autoNext,
+                theme: S.theme
+            };
+            localStorage.setItem('quizState', JSON.stringify(stateToSave));
+        }
+        
+        // --- RESULTS ---
         function calculateResults() {
             let correct = 0, incorrect = 0, unattempted = 0, score = 0, negativeMarksApplied = 0;
             S.userAnswers.forEach((ua, i) => {
@@ -989,12 +1190,20 @@
             score = Math.max(0, score);
             const total = S.questions.length;
             const percentage = total > 0 ? (score / total) * 100 : 0;
-            S.quizResults = { correct, incorrect, unattempted, score: score.toFixed(2), percentage: percentage.toFixed(1), totalQuestions: total, negativeMarksApplied };
+            S.quizResults = { 
+                correct, 
+                incorrect, 
+                unattempted, 
+                score: score.toFixed(2), 
+                percentage: percentage.toFixed(1), 
+                totalQuestions: total, 
+                negativeMarksApplied 
+            };
         }
 
         function getMotivationalFeedback(percentage) {
             if (percentage >= 85) return { title: "Outstanding!", message: "Future Officer, you have a strong grasp of the material.", color: 'var(--color-correct)', bgColor: 'var(--bg-correct)' };
-            if (percentage >= 70) return { title: "Great Job!", message: "You're on the right track. Review your mistakes!", color: 'var(--primary-color)', bgColor: '#fff5f0' };
+            if (percentage >= 70) return { title: "Great Job!", message: "You're on the right track. Review your mistakes!", color: '#4361ee', bgColor: '#e0e7ff' };
             if (percentage >= 50) return { title: "Solid Effort!", message: "There's room for improvement. Keep practicing!", color: 'var(--color-unattempted)', bgColor: 'var(--bg-unattempted)' };
             return { title: "Keep Going!", message: "Don't be discouraged! This is a learning opportunity.", color: 'var(--color-incorrect)', bgColor: 'var(--bg-incorrect)' };
         }
@@ -1022,6 +1231,7 @@
                 `;
                 chartContainer.appendChild(barWrapper);
             });
+            // Animate bars
             setTimeout(() => {
                 document.querySelectorAll('.css-bar-fill').forEach(bar => {
                     bar.style.width = bar.getAttribute('data-percent') + '%';
@@ -1029,7 +1239,42 @@
             }, 100);
         }
 
-        // Review Functions
+        function printResults() {
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>${C.quizTitle} - Results</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; }
+                        h1 { color: #333; }
+                        .result-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; }
+                        .summary-item { display: flex; justify-content: space-between; margin-bottom: 8px; }
+                        .correct { color: green; }
+                        .incorrect { color: red; }
+                    </style>
+                </head>
+                <body>
+                    <h1>${C.quizTitle} - Results</h1>
+                    <div class="result-card">
+                        <h2>Score: ${S.quizResults.score} / ${S.quizResults.totalQuestions} (${S.quizResults.percentage}%)</h2>
+                        <div class="summary-item"><span>Correct Answers:</span> <span class="correct">${S.quizResults.correct}</span></div>
+                        <div class="summary-item"><span>Incorrect Answers:</span> <span class="incorrect">${S.quizResults.incorrect}</span></div>
+                        <div class="summary-item"><span>Unattempted:</span> ${S.quizResults.unattempted}</div>
+                        <div class="summary-item"><span>Negative Marking:</span> <span class="incorrect">-${S.quizResults.negativeMarksApplied.toFixed(2)}</span></div>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 250);
+        }
+
+        // --- REVIEW ---
         function startReview() { S.reviewIndex = 0; showScreen('review'); }
         
         function postReviewRender() {
@@ -1051,6 +1296,16 @@
             statusEl.style.color = statusInfo.color;
 
             document.getElementById('reviewQuestionText').textContent = q.text;
+            
+            // Handle question image if available
+            const questionImage = document.getElementById('reviewQuestionImage');
+            if (q.image) {
+                questionImage.src = q.image;
+                questionImage.classList.remove('hidden');
+            } else {
+                questionImage.classList.add('hidden');
+            }
+            
             const opts = document.getElementById('reviewOptionsContainer');
             opts.innerHTML = '';
             q.options.forEach((opt, i) => {
@@ -1077,9 +1332,11 @@
                 opts.appendChild(div);
             });
             document.getElementById('explanationText').textContent = q.explanation;
+            document.getElementById('referenceText').textContent = q.reference ? `Reference: ${q.reference}` : '';
             document.getElementById('prevReviewBtn').disabled = S.reviewIndex === 0;
             document.getElementById('nextReviewBtn').disabled = S.reviewIndex === S.questions.length - 1;
 
+            // Update sidebar stats
             document.getElementById('review-sidebar-stats').innerHTML = `
                 <ul class="summary-list text-sm">
                     <li><span>Status:</span> <span class="font-semibold" style="color: ${statusInfo.color};">${statusInfo.text}</span></li>
@@ -1105,13 +1362,14 @@
                 item.onclick = () => {
                      S.reviewIndex = i;
                      renderReviewQuestion();
-                     renderReviewPalette();
+                     renderReviewPalette(); // To update the 'current' item
                      document.getElementById('reviewExplanation').classList.add('hidden');
                      document.getElementById('toggleExplanationBtn').textContent = 'Show Solution';
                 };
                 palette.appendChild(item);
             });
         }
+
 
         function navigateReview(dir) {
             const newIndex = S.reviewIndex + dir;
@@ -1123,6 +1381,7 @@
                 document.getElementById('toggleExplanationBtn').textContent = 'Show Solution';
             }
         }
+        
         function toggleExplanation() {
             const exp = document.getElementById('reviewExplanation');
             const btn = document.getElementById('toggleExplanationBtn');
@@ -1130,27 +1389,32 @@
             btn.textContent = isHidden ? 'Show Solution' : 'Hide Solution';
         }
 
-        // Helpers
+        // --- HELPERS ---
         function toggleFullScreen() {
             if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(err => console.error(err));
             else if (document.exitFullscreen) document.exitFullscreen();
         }
+        
         document.addEventListener('fullscreenchange', () => {
             S.isFullScreen = !!document.fullscreenElement;
             document.querySelector('.quiz-container').classList.toggle('fullscreen', S.isFullScreen);
-            const enterIcon = document.getElementById('fullscreenEnterIcon');
-            const exitIcon = document.getElementById('fullscreenExitIcon');
-            if (enterIcon) enterIcon.classList.toggle('hidden', S.isFullScreen);
-            if (exitIcon) exitIcon.classList.toggle('hidden', !S.isFullScreen);
+            document.getElementById('fullscreenEnterIcon').classList.toggle('hidden', S.isFullScreen);
+            document.getElementById('fullscreenExitIcon').classList.toggle('hidden', !S.isFullScreen);
         });
+        
         function toggleSidebar() {
             S.isSidebarCollapsed = !S.isSidebarCollapsed;
             const sb = document.getElementById('quizSidebar');
             const sbt = document.getElementById('sidebarToggle');
-            if (sb) sb.classList.toggle('collapsed', S.isSidebarCollapsed);
-            if (sbt) {
-                sbt.innerHTML = S.isSidebarCollapsed ? `<svg class="svg-icon"><use href="#icon-chevron-left"></use></svg>` : `<svg class="svg-icon"><use href="#icon-chevron-right"></use></svg>`;
-            }
+            sb.classList.toggle('collapsed', S.isSidebarCollapsed);
+            sbt.innerHTML = S.isSidebarCollapsed ? `<svg class="svg-icon"><use href="#icon-chevron-left"></use></svg>` : `<svg class="svg-icon"><use href="#icon-chevron-right"></use></svg>`;
+        }
+        
+        function toggleTheme() {
+            S.theme = S.theme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', S.theme);
+            document.getElementById('themeIcon').innerHTML = `<use href="#icon-${S.theme === 'light' ? 'moon' : 'sun'}"></use>`;
+            saveState();
         }
 
         init();
