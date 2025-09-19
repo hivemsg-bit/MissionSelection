@@ -88,8 +88,9 @@
     .btn-primary:hover { background-color: var(--primary-dark); }
     .btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .error-message { color: var(--color-incorrect); margin-top: 0.5rem; font-size: 0.875rem; }
+    .hidden { display: none; }
 
-    /* बाकी CSS वही रखें (Instructions, Quiz, etc.) - ऊपर से कॉपी करें */
+    /* Instructions Screen */
     .instructions-card { max-width: 800px; }
     .instructions-content { padding: 2rem; }
     .instructions-content h1 {
@@ -136,7 +137,7 @@
     .btn-secondary { background-color: #e2e8f0; color: #4a5568; }
     .btn-secondary:hover { background-color: #cbd5e0; }
 
-    /* Quiz Screen CSS (वही रखें) */
+    /* Quiz Screen */
     .quiz-container {
         display: flex;
         flex-direction: column;
@@ -298,6 +299,7 @@
     .palette-item.incorrect { background-color: var(--bg-incorrect); border: 1px solid var(--border-incorrect); color: var(--color-incorrect); }
     .palette-item.unattempted { background-color: #f7fafc; border: 1px solid #e2e8f0; color: #4a5568; }
 
+    /* Palette Status Colors */
     .status-notVisited { background-color: var(--bg-not-visited); border-color: var(--border-not-visited); color: #4a5568; }
     .status-notAnswered { background-color: var(--bg-not-answered); border-color: var(--border-not-answered); color: var(--color-not-answered); }
     .status-answered { background-color: var(--bg-answered); border-color: var(--border-answered); color: var(--color-answered); }
@@ -315,6 +317,7 @@
         border-radius: 50%;
     }
     
+    /* Results Screen */
     .results-card { max-width: 1000px; background-color: #f7fafc; }
     .results-content { padding: 2.5rem; }
     .results-header { text-align: center; margin-bottom: 2rem; }
@@ -364,6 +367,7 @@
     .social-card .btn { background-color: rgba(255,255,255,0.2); color: white; border: 1px solid white; }
     .social-card .btn:hover { background-color: rgba(255,255,255,0.3); }
 
+    /* Review Screen */
     .review-card { max-width: 1400px; display: flex; flex-direction: column; height: calc(100vh - 2rem); }
     .review-top-bar {
         display: flex;
@@ -489,7 +493,7 @@
 </head>
 <body>
   
-  <!-- SVG Icons (वही रखें) -->
+  <!-- SVG Icons Definition -->
   <svg class="hidden" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
       <symbol id="icon-play" viewBox="0 0 24 24" fill="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" /></symbol>
@@ -517,12 +521,12 @@
 
   </div>
 
-  <script id="quiz-data" type="application/json">{"quizTitle":"करेंट अफेयर्स और सामान्य ज्ञान प्रश्नोत्तरी","questions":[{"id":0,"text":"पेरिस ओलंपिक 2024 में भारत ने कुल कितने पदक जीते हैं?","options":["4","6","8","10"],"correctIndex":1,"explanation":"पेरिस ओलंपिक 2024 में भारत ने 6 पदक जीते: 1 स्वर्ण, 2 रजत और 3 कांस्य।","reference":""},{"id":1,"text":"भारत के वर्तमान राष्ट्रपति कौन हैं?","options":["राम नाथ कोविंद","द्रौपदी मुर्मू","प्रणब मुखर्जी","अपर्णा कुमार"],"correctIndex":1,"explanation":"द्रौपदी मुर्मू 15 जुलाई 2022 से भारत की 15वीं राष्ट्रपति हैं।","reference":""},{"id":2,"text":"चंद्रयान-3 मिशन का लैंडर का नाम क्या है?","options":["प्रज्ञान","विक्रम","शिव शक्ति","अग्नि"],"correctIndex":1,"explanation":"चंद्रयान-3 के लैंडर का नाम विक्रम है, जो 23 अगस्त 2023 को चंद्रमा पर उतरा।","reference":""},{"id":3,"text":"भारतीय रिजर्व बैंक (RBI) का मुख्यालय कहाँ स्थित है?","options":["कोलकाता","मुंबई","नई दिल्ली","चेन्नई"],"correctIndex":1,"explanation":"RBI का मुख्यालय मुंबई में है।","reference":""},{"id":4,"text":"2024 में G20 शिखर सम्मेलन की मेजबानी किस देश ने की?","options":["भारत","ब्राजील","अमेरिका","जापान"],"correctIndex":1,"explanation":"2024 G20 शिखर सम्मेलन की मेजबानी ब्राजील ने की।","reference":""},{"id":5,"text":"भारतीय संविधान की प्रस्तावना में 'समाजवादी' शब्द कब जोड़ा गया?","options":["1976","1950","1962","1947"],"correctIndex":0,"explanation":"42वें संशोधन (1976) द्वारा 'समाजवादी', 'धर्मनिरपेक्ष' और 'अखंडता' शब्द जोड़े गए।","reference":""},{"id":6,"text":"विश्व का सबसे बड़ा महासागर कौन-सा है?","options":["अटलांटिक","हिंद","प्रशांत","आर्कटिक"],"correctIndex":2,"explanation":"प्रशांत महासागर पृथ्वी का सबसे बड़ा महासागर है।","reference":""},{"id":7,"text":"भारत का राष्ट्रीय फल क्या है?","options":["सेब","केला","आम","अंगूर"],"correctIndex":2,"explanation":"आम को भारत का राष्ट्रीय फल घोषित किया गया है।","reference":""},{"id":8,"text":"2024 लोकसभा चुनाव में NDA ने कितनी सीटें जीतीं?","options":["240","272","303","350"],"correctIndex":1,"explanation":"2024 लोकसभा चुनाव में NDA ने 293 सीटें जीतीं, जिसमें BJP की 240 सीटें शामिल हैं।","reference":""},{"id":9,"text":"संयुक्त राष्ट्र का मुख्यालय कहाँ है?","options":["जिनेवा","न्यूयॉर्क","पेरिस","लंदन"],"correctIndex":1,"explanation":"संयुक्त राष्ट्र का मुख्यालय न्यूयॉर्क, अमेरिका में है।","reference":""},{"id":10,"text":"भारत का सबसे लंबा पुल कौन-सा है?","options":["बांद्रा-वर्ली सी लिंक","धोला-सदन पुल","बोगीबील पुल","अट्टारी-वाघा पुल"],"correctIndex":1,"explanation":"धोला-सादिया पुल भारत का सबसे लंबा पुल है, जो 12.274 किमी लंबा है।","reference":""},{"id":11,"text":"COVID-19 वैक्सीन कोविशील्ड किस कंपनी ने विकसित किया?","options":["भारत बायोटेक","सीरम इंस्टीट्यूट","जॉनसन एंड जॉनसन","मॉडर्ना"],"correctIndex":1,"explanation":"कोविशील्ड ऑक्सफोर्ड-एस्ट्राजेनेका वैक्सीन है, जिसे भारत में सीरम इंस्टीट्यूट ने उत्पादित किया।","reference":""},{"id":12,"text":"भारतीय अर्थव्यवस्था का सबसे बड़ा क्षेत्र कौन-सा है?","options":["कृषि","उद्योग","सेवा","खनन"],"correctIndex":2,"explanation":"सेवा क्षेत्र भारतीय GDP का लगभग 55% योगदान देता है।","reference":""},{"id":13,"text":"वर्तमान में भारत के प्रधानमंत्री कौन हैं?","options":["मनमोहन सिंह","नरेंद्र मोदी","अटल बिहारी वाजपेयी","इंदिरा गांधी"],"correctIndex":1,"explanation":"नरेंद्र मोदी 2014 से भारत के प्रधानमंत्री हैं।","reference":""},{"id":14,"text":"भारत का राष्ट्रीय खेल क्या है?","options":["क्रिकेट","हॉकी","कबड्डी","फुटबॉल"],"correctIndex":1,"explanation":"हॉकी को भारत का राष्ट्रीय खेल माना जाता है।","reference":""},{"id":15,"text":"प्लासी का युद्ध कब लड़ा गया?","options":["1757","1857","1526","1764"],"correctIndex":0,"explanation":"प्लासी का युद्ध 23 जून 1757 को लड़ा गया, जिसने ब्रिटिश शासन की नींव रखी।","reference":""},{"id":16,"text":"भारतीय संविधान की कौन-सी अनुसूची राज्यों के विलय से संबंधित है?","options":["पहली","दूसरी","तीसरी","चौथी"],"correctIndex":0,"explanation":"पहली अनुसूची राज्यों और संघ राज्य क्षेत्रों की सूची देती है।","reference":""},{"id":17,"text":"गंगा नदी का उद्गम स्थल क्या है?","options":["गंगोत्री","यमुनोत्री","अमरनाथ","बद्रीनाथ"],"correctIndex":0,"explanation":"गंगा नदी गंगोत्री ग्लेशियर से निकलती है।","reference":""},{"id":18,"text":"अशोक का सिंह स्तंभ कहाँ स्थित है?","options":["साँची","सारनाथ","अमरावती","कोणार्क"],"correctIndex":1,"explanation":"अशोक स्तंभ सारनाथ में स्थित है और राष्ट्रीय चिन्ह है।","reference":""},{"id":19,"text":"भारतीय संविधान का निर्माण कितने समय में हुआ?","options":["2 वर्ष 11 माह 18 दिन","3 वर्ष","1 वर्ष","5 वर्ष"],"correctIndex":0,"explanation":"संविधान सभा ने 2 वर्ष, 11 माह और 18 दिनों में संविधान तैयार किया।","reference":""},{"id":20,"text":"2024 में नोबेल शांति पुरस्कार किसे मिला?","options":["निहोन हिदान्क्यो","यूक्रेन सरकार","WHO","UNICEF"],"correctIndex":0,"explanation":"2024 नोबेल शांति पुरस्कार जापानी संगठन निहोन हिदान्क्यो को परमाणु निरस्त्रीकरण के लिए मिला।","reference":""},{"id":21,"text":"भारत का सबसे बड़ा राज्य (क्षेत्रफल के अनुसार) कौन-सा है?","options":["मध्य प्रदेश","राजस्थान","उत्तर प्रदेश","महाराष्ट्र"],"correctIndex":1,"explanation":"राजस्थान भारत का सबसे बड़ा राज्य है, क्षेत्रफल 342,239 वर्ग किमी।","reference":""},{"id":22,"text":"ISRO का पूरा नाम क्या है?","options":["Indian Space Research Organisation","Indian Science Research Office","International Space Research Org","Indian Satellite Research Org"],"correctIndex":0,"explanation":"ISRO का पूरा नाम Indian Space Research Organisation है।","reference":""},{"id":23,"text":"भारत की स्वतंत्रता कब मिली?","options":["15 अगस्त 1947","26 जनवरी 1950","2 अक्टूबर 1947","14 अगस्त 1947"],"correctIndex":0,"explanation":"भारत को 15 अगस्त 1947 को पूर्ण स्वतंत्रता मिली।","reference":""},{"id":24,"text":"वर्तमान में संयुक्त राष्ट्र महासचिव कौन हैं?","options":["एंटोनियो गुटेरेस","बान की मून","कोफी अन्नान","जावेद अहमद"],"correctIndex":0,"explanation":"एंटोनियो गुटेरेस 2017 से UN महासचिव हैं।","reference":""}],"totalTime":900,"negativeMarking":0.3333333333333333,"appName":"MissionSelection","telegramLink":"https://t.me/+8cLrxmcwutM1YzY1","scriptUrl":"https://script.google.com/macros/s/AKfycbwYkQ4q2O7R2_pyY-EYoMk2l4uZFN7KYMeWWsKF2jdhCJ_32_XYs3Q4OZkHCEUH_NbN/exec","instructionStrings":{"screenTitle":"परीक्षा निर्देश","quizNamePrefix":"परीक्षा का नाम:","totalTime":"समय: 15 मिनट","totalMarks":"पूर्णांक: 25","instructionsHeader":"कृपया निम्नलिखित निर्देशों को ध्यानपूर्वक पढ़ें:","instruction1":"परीक्षा में 25 प्रश्न हैं।","instruction2":"प्रत्येक प्रश्न में दिए गए 4 विकल्पों में से केवल 1 विकल्प सही उत्तर के रूप में उपलब्ध होगा।","instruction3":"आपको परीक्षा समाप्त करने के लिए 15 मिनट का समय मिलेगा।","instruction4":"गलत उत्तर पर नकारात्मक अंकन है: प्रत्येक गलत उत्तर के लिए 0.33 अंक काटे जाएंगे।","instruction5":"प्रत्येक सही उत्तर के लिए 1 अंक दिया जाएगा।","instruction6":"प्रयास न किए गए प्रश्नों के लिए कोई अंक नहीं काटा जाएगा।","instruction7":"कृपया सुनिश्चित करें कि आप परीक्षा सबमिट करने से पहले या ब्राउज़र को बंद करने से पहले परीक्षा पूरी कर लें।","defaultLangMessage":"आपकी परीक्षा की डिफ़ॉल्ट भाषा है: हिन्दी","defaultLangDisclaimer":"सभी प्रश्न इसी भाषा में प्रदर्शित होंगे। इसे बाद में बदला नहीं जा सकता।","agreeCheckboxLabel":"मैंने सभी निर्देशों को ध्यान से पढ़ लिया है और समझ लिया है, और मैं उनका पालन करने के लिए सहमत हूं।","proceedButton":"मैं शुरू करने के लिए तैयार हूं","backButton":"पीछे जाएं"},"language":"hi"}</script>
+  <script id="quiz-data" type="application/json">{"quizTitle":"करेंट अफेयर्स और सामान्य ज्ञान प्रश्नोत्तरी","questions":[{"id":0,"text":"पेरिस ओलंपिक 2024 में भारत ने कुल कितने पदक जीते हैं?","options":["4","6","8","10"],"correctIndex":1,"explanation":"पेरिस ओलंपिक 2024 में भारत ने 6 पदक जीते: 1 स्वर्ण, 2 रजत और 3 कांस्य।","reference":""},{"id":1,"text":"भारत के वर्तमान राष्ट्रपति कौन हैं?","options":["राम नाथ कोविंद","द्रौपदी मुर्मू","प्रणब मुखर्जी","अपर्णा कुमार"],"correctIndex":1,"explanation":"द्रौपदी मुर्मू 15 जुलाई 2022 से भारत की 15वीं राष्ट्रपति हैं।","reference":""},{"id":2,"text":"चंद्रयान-3 मिशन का लैंडर का नाम क्या है?","options":["प्रज्ञान","विक्रम","शिव शक्ति","अग्नि"],"correctIndex":1,"explanation":"चंद्रयान-3 के लैंडर का नाम विक्रम है, जो 23 अगस्त 2023 को चंद्रमा पर उतरा।","reference":""},{"id":3,"text":"भारतीय रिजर्व बैंक (RBI) का मुख्यालय कहाँ स्थित है?","options":["कोलकाता","मुंबई","नई दिल्ली","चेन्नई"],"correctIndex":1,"explanation":"RBI का मुख्यालय मुंबई में है।","reference":""},{"id":4,"text":"2024 में G20 शिखर सम्मेलन की मेजबानी किस देश ने की?","options":["भारत","ब्राजील","अमेरिका","जापान"],"correctIndex":1,"explanation":"2024 G20 शिखर सम्मेलन की मेजबानी ब्राजील ने की।","reference":""},{"id":5,"text":"भारतीय संविधान की प्रस्तावना में 'समाजवादी' शब्द कब जोड़ा गया?","options":["1976","1950","1962","1947"],"correctIndex":0,"explanation":"42वें संशोधन (1976) द्वारा 'समाजवादी', 'धर्मनिरपेक्ष' और 'अखंडता' शब्द जोड़े गए।","reference":""},{"id":6,"text":"विश्व का सबसे बड़ा महासागर कौन-सा है?","options":["अटलांटिक","हिंद","प्रशांत","आर्कटिक"],"correctIndex":2,"explanation":"प्रशांत महासागर पृथ्वी का सबसे बड़ा महासागर है।","reference":""},{"id":7,"text":"भारत का राष्ट्रीय फल क्या है?","options":["सेब","केला","आम","अंगूर"],"correctIndex":2,"explanation":"आम को भारत का राष्ट्रीय फल घोषित किया गया है।","reference":""},{"id":8,"text":"2024 लोकसभा चुनाव में NDA ने कितनी सीटें जीतीं?","options":["240","272","303","350"],"correctIndex":1,"explanation":"2024 लोकसभा चुनाव में NDA ने 293 सीटें जीतीं, जिसमें BJP की 240 सीटें शामिल हैं।","reference":""},{"id":9,"text":"संयुक्त राष्ट्र का मुख्यालय कहाँ है?","options":["जिनेवा","न्यूयॉर्क","पेरिस","लंदन"],"correctIndex":1,"explanation":"संयुक्त राष्ट्र का मुख्यालय न्यूयॉर्क, अमेरिका में है।","reference":""},{"id":10,"text":"भारत का सबसे लंबा पुल कौन-सा है?","options":["बांद्रा-वर्ली सी लिंक","धोला-सदन पुल","बोगीबील पुल","अट्टारी-वाघा पुल"],"correctIndex":1,"explanation":"धोला-सादिया पुल भारत का सबसे लंबा पुल है, जो 12.274 किमी लंबा है।","reference":""},{"id":11,"text":"COVID-19 वैक्सीन कोविशील्ड किस कंपनी ने विकसित किया?","options":["भारत बायोटेक","सीरम इंस्टीट्यूट","जॉनसन एंड जॉनसन","मॉडर्ना"],"correctIndex":1,"explanation":"कोविशील्ड ऑक्सफोर्ड-एस्ट्राजेनेका वैक्सीन है, जिसे भारत में सीरम इंस्टीट्यूट ने उत्पादित किया।","reference":""},{"id":12,"text":"भारतीय अर्थव्यवस्था का सबसे बड़ा क्षेत्र कौन-सा है?","options":["कृषि","उद्योग","सेवा","खनन"],"correctIndex":2,"explanation":"सेवा क्षेत्र भारतीय GDP का लगभग 55% योगदान देता है।","reference":""},{"id":13,"text":"वर्तमान में भारत के प्रधानमंत्री कौन हैं?","options":["मनमोहन सिंह","नरेंद्र मोदी","अटल बिहारी वाजपेयी","इंदिरा गांधी"],"correctIndex":1,"explanation":"नरेंद्र मोदी 2014 से भारत के प्रधानमंत्री हैं।","reference":""},{"id":14,"text":"भारत का राष्ट्रीय खेल क्या है?","options":["क्रिकेट","हॉकी","कबड्डी","फुटबॉल"],"correctIndex":1,"explanation":"हॉकी को भारत का राष्ट्रीय खेल माना जाता है।","reference":""},{"id":15,"text":"प्लासी का युद्ध कब लड़ा गया?","options":["1757","1857","1526","1764"],"correctIndex":0,"explanation":"प्लासी का युद्ध 23 जून 1757 को लड़ा गया, जिसने ब्रिटिश शासन की नींव रखी।","reference":""},{"id":16,"text":"भारतीय संविधान की कौन-सी अनुसूची राज्यों के विलय से संबंधित है?","options":["पहली","दूसरी","तीसरी","चौथी"],"correctIndex":0,"explanation":"पहली अनुसूची राज्यों और संघ राज्य क्षेत्रों की सूची देती है।","reference":""},{"id":17,"text":"गंगा नदी का उद्गम स्थल क्या है?","options":["गंगोत्री","यमुनोत्री","अमरनाथ","बद्रीनाथ"],"correctIndex":0,"explanation":"गंगा नदी गंगोत्री ग्लेशियर से निकलती है।","reference":""},{"id":18,"text":"अशोक का सिंह स्तंभ कहाँ स्थित है?","options":["साँची","सारनाथ","अमरावती","कोणार्क"],"correctIndex":1,"explanation":"अशोक स्तंभ सारनाथ में स्थित है और राष्ट्रीय चिन्ह है।","reference":""},{"id":19,"text":"भारतीय संविधान का निर्माण कितने समय में हुआ?","options":["2 वर्ष 11 माह 18 दिन","3 वर्ष","1 वर्ष","5 वर्ष"],"correctIndex":0,"explanation":"संविधान सभा ने 2 वर्ष, 11 माह और 18 दिनों में संविधान तैयार किया।","reference":""},{"id":20,"text":"2024 में नोबेल शांति पुरस्कार किसे मिला?","options":["निहोन हिदान्क्यो","यूक्रेन सरकार","WHO","UNICEF"],"correctIndex":0,"explanation":"2024 नोबेल शांति पुरस्कार जापानी संगठन निहोन हिदान्क्यो को परमाणु निरस्त्रीकरण के लिए मिला।","reference":""},{"id":21,"text":"भारत का सबसे बड़ा राज्य (क्षेत्रफल के अनुसार) कौन-सा है?","options":["मध्य प्रदेश","राजस्थान","उत्तर प्रदेश","महाराष्ट्र"],"correctIndex":1,"explanation":"राजस्थान भारत का सबसे बड़ा राज्य है, क्षेत्रफल 342,239 वर्ग किमी।","reference":""},{"id":22,"text":"ISRO का पूरा नाम क्या है?","options":["Indian Space Research Organisation","Indian Science Research Office","International Space Research Org","Indian Satellite Research Org"],"correctIndex":0,"explanation":"ISRO का पूरा नाम Indian Space Research Organisation है।","reference":""},{"id":23,"text":"भारत की स्वतंत्रता कब मिली?","options":["15 अगस्त 1947","26 जनवरी 1950","2 अक्टूबर 1947","14 अगस्त 1947"],"correctIndex":0,"explanation":"भारत को 15 अगस्त 1947 को पूर्ण स्वतंत्रता मिली।","reference":""},{"id":24,"text":"वर्तमान में संयुक्त राष्ट्र महासचिव कौन हैं?","options":["एंटोनियो गुटेरेस","बान की मून","कोफी अन्नान","जावेद अहमद"],"correctIndex":0,"explanation":"एंटोनियो गुटेरेस 2017 से UN महासचिव हैं।","reference":""}],"totalTime":900,"negativeMarking":0.3333333333333333,"appName":"MissionSelection","telegramLink":"https://t.me/+8cLrxmcwutM1YzY1","scriptUrl":"YOUR_APPS_SCRIPT_URL","instructionStrings":{"screenTitle":"परीक्षा निर्देश","quizNamePrefix":"परीक्षा का नाम:","totalTime":"समय: 15 मिनट","totalMarks":"पूर्णांक: 25","instructionsHeader":"कृपया निम्नलिखित निर्देशों को ध्यानपूर्वक पढ़ें:","instruction1":"परीक्षा में 25 प्रश्न हैं।","instruction2":"प्रत्येक प्रश्न में दिए गए 4 विकल्पों में से केवल 1 विकल्प सही उत्तर के रूप में उपलब्ध होगा।","instruction3":"आपको परीक्षा समाप्त करने के लिए 15 मिनट का समय मिलेगा।","instruction4":"गलत उत्तर पर नकारात्मक अंकन है: प्रत्येक गलत उत्तर के लिए 0.33 अंक काटे जाएंगे।","instruction5":"प्रत्येक सही उत्तर के लिए 1 अंक दिया जाएगा।","instruction6":"प्रयास न किए गए प्रश्नों के लिए कोई अंक नहीं काटा जाएगा।","instruction7":"कृपया सुनिश्चित करें कि आप परीक्षा सबमिट करने से पहले या ब्राउज़र को बंद करने से पहले परीक्षा पूरी कर लें।","defaultLangMessage":"आपकी परीक्षा की डिफ़ॉल्ट भाषा है: हिन्दी","defaultLangDisclaimer":"सभी प्रश्न इसी भाषा में प्रदर्शित होंगे। इसे बाद में बदला नहीं जा सकता।","agreeCheckboxLabel":"मैंने सभी निर्देशों को ध्यान से पढ़ लिया है और समझ लिया है, और मैं उनका पालन करने के लिए सहमत हूं।","proceedButton":"मैं शुरू करने के लिए तैयार हूं","backButton":"पीछे जाएं"},"language":"hi"}</script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
         const S = { // State
-            appPhase: 'registration', // शुरू में registration
+            appPhase: 'registration',
             questions: [],
             userAnswers: [],
             currentQuestionIndex: 0,
@@ -534,8 +538,8 @@
             isSidebarCollapsed: true,
             quizResults: null,
             reviewIndex: 0,
-            studentName: '', // नाम स्टोर
-            studentMobile: '' // मोबाइल स्टोर
+            studentName: '',
+            studentMobile: ''
         };
 
         const C = JSON.parse(document.getElementById('quiz-data').textContent);
@@ -563,7 +567,6 @@
                 <p style="margin-top: 1rem; font-size: 0.875rem; color: #4a5568;">आपका डेटा सुरक्षित रहेगा और केवल विश्लेषण के लिए उपयोग होगा।</p>
             </div>`;
 
-        // बाकी Templates (Instructions, Quiz, Results, Review) वही रखें
         const instructionsTemplate = () => {
             const i = C.instructionStrings;
             return `
@@ -759,7 +762,7 @@
             if (screenName === 'review') postReviewRender();
         }
 
-        // Registration Logic
+        // Event Listeners
         function addEventListeners() {
             if (S.appPhase === 'registration') {
                 const form = document.getElementById('studentForm');
@@ -777,27 +780,39 @@
 
                     errorEl.classList.add('hidden');
 
-                    // Apps Script को POST करें
+                    // Apps Script को POST करें (Updated Error Handling)
                     try {
+                        console.log('Sending to URL:', C.scriptUrl); // Console में URL चेक करें
+                        console.log('Data being sent:', { name, mobile, quizTitle: C.quizTitle }); // Data चेक करें
+
                         const response = await fetch(C.scriptUrl, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ name, mobile, quizTitle: C.quizTitle })
                         });
 
+                        console.log('Response Status:', response.status); // Status चेक करें
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                        }
+
                         const result = await response.json();
+                        console.log('Response JSON:', result); // Full response चेक करें
+
                         if (result.status === 'success') {
                             S.studentName = name;
                             S.studentMobile = mobile;
+                            console.log('Success: Moving to instructions');
                             showScreen('instructions');
                         } else {
-                            errorEl.textContent = 'डेटा सेव करने में त्रुटि। कृपया पुनः प्रयास करें।';
+                            errorEl.textContent = `सर्वर एरर: ${result.message || 'Unknown error'}`;
                             errorEl.classList.remove('hidden');
                         }
                     } catch (err) {
-                        errorEl.textContent = 'इंटरनेट कनेक्शन चेक करें।';
+                        console.error('Fetch Error Details:', err); // Detailed error console में
+                        errorEl.textContent = `डेटा सेव करने में त्रुटि: ${err.message}. कृपया URL चेक करें या इंटरनेट कनेक्शन देखें।`;
                         errorEl.classList.remove('hidden');
-                        console.error(err);
                     }
                 };
             } else if (S.appPhase === 'instructions') {
@@ -805,9 +820,8 @@
                 const proceed = document.getElementById('proceedButton');
                 agree.onchange = () => { proceed.disabled = !agree.checked; };
                 proceed.onclick = startQuiz;
-                document.getElementById('backButton').onclick = () => showScreen('registration'); // Back to registration
+                document.getElementById('backButton').onclick = () => showScreen('registration');
             } else if (S.appPhase === 'quiz') {
-                // Quiz listeners (वही रखें)
                 document.getElementById('pauseTimerBtn').onclick = toggleTimerPause;
                 document.getElementById('autoNextToggle').onchange = (e) => { S.autoNext = e.target.checked; };
                 document.getElementById('fullscreenBtn').onclick = toggleFullScreen;
@@ -818,7 +832,12 @@
                 document.getElementById('sidebarToggle').onclick = toggleSidebar;
             } else if (S.appPhase === 'results') {
                 document.getElementById('reviewAnswersBtn').onclick = startReview;
-                document.getElementById('reattemptQuizBtn').onclick = () => { S.studentName = ''; S.studentMobile = ''; showScreen('registration'); }; // Re-register for re-attempt
+                document.getElementById('reattemptQuizBtn').onclick = () => { 
+                    S.studentName = ''; 
+                    S.studentMobile = ''; 
+                    S.quizResults = null;
+                    showScreen('registration'); 
+                };
             } else if (S.appPhase === 'review') {
                 document.getElementById('exitReviewBtn').onclick = () => showScreen('results');
                 document.getElementById('prevReviewBtn').onclick = () => navigateReview(-1);
@@ -827,7 +846,7 @@
             }
         }
 
-        // Quiz Functions (वही रखें - startQuiz, renderQuestion, etc.)
+        // Quiz Functions (Unchanged)
         function startQuiz() {
             S.currentQuestionIndex = 0;
             S.timeLeft = C.totalTime;
@@ -836,7 +855,7 @@
             }));
             S.userAnswers[0].status = C.QuestionStatus.NotAnswered;
             showScreen('quiz');
-            document.documentElement.requestFullscreen().catch(err => console.warn(err));
+            document.documentElement.requestFullscreen().catch(err => console.warn(`Fullscreen error: ${err.message}`));
         }
 
         function postQuizRender() {
@@ -882,14 +901,16 @@
 
         function updateProgressBar() {
             const progress = ((S.currentQuestionIndex + 1) / S.questions.length) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
+            const fill = document.getElementById('progressFill');
+            if (fill) fill.style.width = progress + '%';
         }
         
         function selectOption(index) {
             const answer = S.userAnswers[S.currentQuestionIndex];
             answer.selectedOptionIndex = index;
             answer.status = answer.isMarked ? C.QuestionStatus.AnsweredAndMarked : C.QuestionStatus.Answered;
-            renderQuestion(); renderPalette();
+            renderQuestion(); 
+            renderPalette();
             updateProgressBar();
             if (S.autoNext && S.currentQuestionIndex < S.questions.length - 1) {
                 setTimeout(() => navigateToQuestion(S.currentQuestionIndex + 1), 300);
@@ -901,7 +922,8 @@
             S.currentQuestionIndex = index;
             const answer = S.userAnswers[index];
             if (answer.status === C.QuestionStatus.NotVisited) answer.status = C.QuestionStatus.NotAnswered;
-            renderQuestion(); renderPalette();
+            renderQuestion(); 
+            renderPalette();
             updateProgressBar();
         }
         
@@ -921,7 +943,8 @@
             const answer = S.userAnswers[S.currentQuestionIndex];
             answer.selectedOptionIndex = null;
             answer.status = answer.isMarked ? C.QuestionStatus.MarkedForReview : C.QuestionStatus.NotAnswered;
-            renderQuestion(); renderPalette();
+            renderQuestion(); 
+            renderPalette();
             updateProgressBar();
         }
 
@@ -929,12 +952,11 @@
             if (confirm('Are you sure you want to submit the test?')) {
                 stopTimer();
                 calculateResults();
-                // यहां स्कोर को भी Sheet में अपडेट करने का कोड ऐड कर सकते हैं (optional)
                 showScreen('results');
             }
         }
 
-        // Timer Functions (वही)
+        // Timer Functions
         function startTimer() { stopTimer(); S.timerInterval = setInterval(tick, 1000); }
         function stopTimer() { clearInterval(S.timerInterval); S.timerInterval = null; }
         function tick() {
@@ -955,7 +977,7 @@
             document.getElementById('playIcon').classList.toggle('hidden', !S.isTimerPaused);
         }
 
-        // Results Functions (वही, लेकिन नाम/मोबाइल ऐड)
+        // Results Functions
         function calculateResults() {
             let correct = 0, incorrect = 0, unattempted = 0, score = 0, negativeMarksApplied = 0;
             S.userAnswers.forEach((ua, i) => {
@@ -1007,7 +1029,7 @@
             }, 100);
         }
 
-        // Review Functions (वही रखें)
+        // Review Functions
         function startReview() { S.reviewIndex = 0; showScreen('review'); }
         
         function postReviewRender() {
@@ -1016,7 +1038,6 @@
         }
 
         function renderReviewQuestion() {
-            // (वही कोड)
             const q = S.questions[S.reviewIndex];
             const ua = S.userAnswers[S.reviewIndex];
             
@@ -1067,7 +1088,6 @@
         }
 
         function renderReviewPalette() {
-            // (वही कोड)
             const palette = document.getElementById('review-palette');
             palette.innerHTML = '';
             S.questions.forEach((q, i) => {
@@ -1110,7 +1130,7 @@
             btn.textContent = isHidden ? 'Show Solution' : 'Hide Solution';
         }
 
-        // Helpers (वही)
+        // Helpers
         function toggleFullScreen() {
             if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(err => console.error(err));
             else if (document.exitFullscreen) document.exitFullscreen();
@@ -1118,15 +1138,19 @@
         document.addEventListener('fullscreenchange', () => {
             S.isFullScreen = !!document.fullscreenElement;
             document.querySelector('.quiz-container').classList.toggle('fullscreen', S.isFullScreen);
-            document.getElementById('fullscreenEnterIcon').classList.toggle('hidden', S.isFullScreen);
-            document.getElementById('fullscreenExitIcon').classList.toggle('hidden', !S.isFullScreen);
+            const enterIcon = document.getElementById('fullscreenEnterIcon');
+            const exitIcon = document.getElementById('fullscreenExitIcon');
+            if (enterIcon) enterIcon.classList.toggle('hidden', S.isFullScreen);
+            if (exitIcon) exitIcon.classList.toggle('hidden', !S.isFullScreen);
         });
         function toggleSidebar() {
             S.isSidebarCollapsed = !S.isSidebarCollapsed;
             const sb = document.getElementById('quizSidebar');
             const sbt = document.getElementById('sidebarToggle');
-            sb.classList.toggle('collapsed', S.isSidebarCollapsed);
-            sbt.innerHTML = S.isSidebarCollapsed ? `<svg class="svg-icon"><use href="#icon-chevron-left"></use></svg>` : `<svg class="svg-icon"><use href="#icon-chevron-right"></use></svg>`;
+            if (sb) sb.classList.toggle('collapsed', S.isSidebarCollapsed);
+            if (sbt) {
+                sbt.innerHTML = S.isSidebarCollapsed ? `<svg class="svg-icon"><use href="#icon-chevron-left"></use></svg>` : `<svg class="svg-icon"><use href="#icon-chevron-right"></use></svg>`;
+            }
         }
 
         init();
